@@ -1,6 +1,8 @@
 
 .DS_Stone
 .DS_Store
+fuel/app/logs/*/*/*
+fuel/app/cache/*/*
 fuel/app/config/db.php
 fuel/app/config/development/*
 fuel/app/config/production/*

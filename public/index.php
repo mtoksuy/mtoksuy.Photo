@@ -40,9 +40,9 @@ if($_SERVER["HTTP_HOST"] == 'localhost') {
 	define('HTTP', 'http://localhost/mtoksuy/');
 	define('PATH', '/Volumes/2016_ssd_media'.$_SERVER["DOCUMENT_ROOT"].'/mtoksuy/');
 	define('INTERNAL_PATH', str_replace('mtoksuy/', '', PATH).'fuelphp/mtoksuy/');
-	define('TITLE', 'mtoksuy.Photo[マツオカソウヤ：写真ライブラリー]');
+	define('TITLE', 'mtoksuy.Photo-マツオカソウヤ写真ライブラリー');
 	define('META_KEYWORDS', 'マツオカソウヤ, 写真, ポートフォーリオ');
-	define('META_DESCRIPTION', 'スナップシューター写真ライブラリーポートフォーリトサイト');
+	define('META_DESCRIPTION', 'マツオカソウヤによるスナップシューター写真ライブラリーポートフォーリトサイト');
 	define('TWITTER_ID', 'mtoksuy');
 	define('INSTAGRAM_ID', 'mtoksuy');
 }
@@ -52,9 +52,9 @@ if($_SERVER["HTTP_HOST"] == 'localhost') {
 		define('HTTP', 'http://'.$_SERVER["HTTP_HOST"].'/');
 		define('PATH', $_SERVER["DOCUMENT_ROOT"].'/');
 		define('INTERNAL_PATH', str_replace('public/', '', PATH));
-		define('TITLE', 'mtoksuy.Photo[マツオカソウヤ：写真ライブラリー]');
+		define('TITLE', 'mtoksuy.Photo-マツオカソウヤ写真ライブラリー');
 		define('META_KEYWORDS', 'マツオカソウヤ, 写真, ポートフォーリオ');
-		define('META_DESCRIPTION', 'スナップシューター写真ライブラリーポートフォーリトサイト');
+		define('META_DESCRIPTION', 'マツオカソウヤによるスナップシューター写真ライブラリーポートフォーリトサイト');
 		define('TWITTER_ID', 'mtoksuy');
 		define('INSTAGRAM_ID', 'mtoksuy');
 	}
