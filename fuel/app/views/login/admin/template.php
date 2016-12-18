@@ -29,7 +29,7 @@
 								<dt>投稿</dt>
 								<dd><a href="<?php echo Uri::base(); ?>login/admin/matome/" target="_blank">Photoリンク作成</a></dd>
 								<dd><a href="<?php echo Uri::base(); ?>login/admin/list/">投稿一覧</a></dd>
-
+								<dd><a href="<?php echo Uri::base(); ?>login/admin/draft/list/">下書き一覧</a></dd>
 
 
 
@@ -70,7 +70,7 @@
 		</div>
 
 		<!-- jQueryプラグイン -->
-		<script type="text/javascript" src="<?php echo HTTP; ?>assets/js/common/jquery-1.9.1-min.js"></script>
+		<script type="text/javascript" src="<?php echo HTTP; ?>assets/js/library/jquery-1.9.1-min.js"></script>
 
 		<!-- sweetalert-devプラグイン -->
 		<script type="text/javascript" src="<?php echo HTTP; ?>assets/library/sweetalert-master/dist/sweetalert-dev.js"></script>

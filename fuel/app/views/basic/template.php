@@ -8,6 +8,8 @@
 		<link rel="shortcut icon" href="<?php echo Uri::base(); ?>assets/img/icon/favicon_1.ico" type="image/vnd.microsoft.icon">
 		<!-- css -->
 		<link rel="stylesheet" href="<?php echo Uri::base(); ?>assets/css/common/common.css" type="text/css">
+		<link rel="stylesheet" href="<?php echo Uri::base(); ?>assets/css/matome/common.css" type="text/css">
+
 
 		<link rel="stylesheet" href="<?php echo HTTP; ?>assets/css/library/typicons.2.0.7/font/typicons.css" type="text/css">
 		<link rel="stylesheet" href="<?php echo Uri::base(); ?>assets/css/library/flickity.1.1.1/flickity.css" type="text/css" media="screen">
@@ -26,6 +28,11 @@
 			<?php  echo $view_data["mobile_ad"]; ?>
 			<!-- drawer -->
 			<?php echo $view_data["drawer"]; ?>
+			<!-- photo -->
+			<div class="photo clearfix">
+				<!-- photoコンテンツ -->
+				<?php echo $view_data["photo"]; ?>
+			</div>
 			<!-- main -->
 			<div class="main clearfix">
 				<!-- sp_thumbnail -->

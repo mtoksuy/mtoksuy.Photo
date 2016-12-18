@@ -1,0 +1,174 @@
+	//----------------
+	//読み込み後の処理
+	//----------------
+	$(function() {
+		//-------------------------------------------------------
+		//全ページトップでトップにスクロールするボタン表示 非表示
+		//-------------------------------------------------------
+		$(window).scroll(function() {
+		 if($(window).width() > 319 && $(this).scrollTop() > 700) {
+			}
+		});
+	}); // $(function() {
+
+
+
+
+/************************************
+Photoを自動で適切な大きさに変える関数
+************************************/
+function photo_change() {
+	var photo_height = $(window).height() - $('#header').height();
+	var photo_width  = $(window).width();
+/*
+1280
+609
+*/
+// ヘッダー分短くする
+if(photo_width <= 768) {
+	photo_height = photo_height - 51;
+}
+
+	$('.article_photo').css( {
+		'height': photo_height+'px',
+	});
+
+/*
+p(photo_height);// 519
+p(photo_width); // 1020
+p($('.article_photo img').width());// 1020
+p($('.article_photo img').height());// 519
+*/
+
+
+
+
+
+
+
+
+	////////////
+	//横長の場合
+	////////////
+	if($('.article_photo .article_photo_image').width() > $('.article_photo .article_photo_image').height()) {
+		// ブラウザより横長な場合
+		if(photo_width < $('.article_photo .article_photo_image').width()) {
+			$('.article_photo .article_photo_image').css( {
+				'height': 'auto',
+				'width': '100%',
+			});
+
+			diff_photo_height      = photo_height- $('.article_photo .article_photo_image').height();
+			diff_photo_height_half = diff_photo_height / 2;
+			$('.article_photo .article_photo_image').css( {
+				'top': diff_photo_height_half,
+			});
+		} // if(photo_width < $('.article_photo .article_photo_image').width()) {
+		// ブラウザと同じサイズの場合
+		if(photo_width == $('.article_photo .article_photo_image').width()) {
+			$('.article_photo .article_photo_image').css( {
+				'height': 'auto',
+				'width': '100%',
+			});
+			diff_photo_height      = photo_height- $('.article_photo .article_photo_image').height();
+			diff_photo_height_half = diff_photo_height / 2;
+			$('.article_photo .article_photo_image').css( {
+				'top': diff_photo_height_half,
+			});
+		}
+			// それ以外の場合
+			else {
+				$('.article_photo .article_photo_image').css( {
+					'height': '100%',
+					'width': 'auto',
+				});
+			} // else
+	} // if($('.article_photo .article_photo_image').width() > $('.article_photo .article_photo_image').height()) {
+		////////////////
+		//スクエアの場合
+		////////////////
+		else if($('.article_photo .article_photo_image').width() == $('.article_photo .article_photo_image').height()) {
+
+		}
+			////////////
+			//縦長の場合
+			////////////
+			else if($('.article_photo .article_photo_image').width() < $('.article_photo .article_photo_image').height()) {
+				// ブラウザより横長な場合
+				if(photo_width < $('.article_photo .article_photo_image').width()) {
+					$('.article_photo .article_photo_image').css( {
+						'height': 'auto',
+						'width': '100%',
+					});
+		
+					diff_photo_height      = photo_height- $('.article_photo .article_photo_image').height();
+					diff_photo_height_half = diff_photo_height / 2;
+					$('.article_photo .article_photo_image').css( {
+						'top': diff_photo_height_half,
+					});
+				} // if(photo_width < $('.article_photo .article_photo_image').width()) {
+				// ブラウザと同じサイズの場合
+				if(photo_width == $('.article_photo .article_photo_image').width()) {
+					$('.article_photo .article_photo_image').css( {
+						'height': 'auto',
+						'width': '100%',
+					});
+					diff_photo_height      = photo_height- $('.article_photo .article_photo_image').height();
+					diff_photo_height_half = diff_photo_height / 2;
+					$('.article_photo .article_photo_image').css( {
+						'top': diff_photo_height_half,
+					});
+				}
+					// それ以外の場合
+					else {
+						$('.article_photo .article_photo_image').css( {
+							'height': '100%',
+							'width': 'auto',
+						});
+					} // else
+			}
+}
+
+
+
+/*******************
+HTML読み込み後に処理
+*******************/
+$(window).load(function(){
+
+
+
+	$('.photo').on( {
+		'click' : function() {
+			full_image_href_data = $('.article_photo .article_photo_image').attr('full-image-href-data');
+//			window.location.href = full_image_href_data;
+			window.open(full_image_href_data);
+		}
+}, '.article_photo .article_photo_image');
+
+
+
+
+	photo_change();
+	//------------------
+	//リサイズの時の参考
+	//------------------
+	$(window).resize(function() {
+	photo_change();
+	});
+});
+/*
+//----------------
+//ブラウザの大きさ
+//----------------
+$(window).width();
+$(window).height();
+//----------------------
+//スクロールしている数値
+//----------------------
+$(window).scrollTop();
+//------------
+//一番底の数値
+//------------
+$('html').height()
+*/

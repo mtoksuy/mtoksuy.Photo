@@ -1,14 +1,11 @@
 			<iframe name="shumbnail_iframe" id="" style="display: none;"></iframe>
 
 
-
-
-
 				<!-- 文字カウントツール -->
 				<div class="text_count_tool clearfix">
 					<div class="text_count_tool_inner">
 						<div class="text_count_tool_inner_count">
-							<h4>現在のまとめ文字数</h4>
+							<h4>現在の文字数</h4>
 							<p class="count">0文字</p>
 							<p>クオリティー度：<span class="rank"></span></p>
 						</div>
@@ -167,22 +164,14 @@ echo '</pre>';
 								<h3>カテゴリー</h3>
 								<div class="postbox_contents">
 									<select class="matome_category" id="category" name="category">
-										<option value="エンタメ・カルチャー" <?php if($post_data["post"]["category"] == 'エンタメ・カルチャー') {echo 'selected'; } ?>>エンタメ・カルチャー</option>
-										<option value="ニュース・ゴシップ" <?php if($post_data["post"]["category"] == 'ニュース・ゴシップ') {echo 'selected'; } ?>>ニュース・ゴシップ</option>
-										<option value="かわいい" <?php if($post_data["post"]["category"] == 'かわいい') {echo 'selected'; } ?>>かわいい</option>
-										<option value="ガールズ" <?php if($post_data["post"]["category"] == 'ガールズ') {echo 'selected'; } ?>>ガールズ</option>
-										<option value="暮らし・アイデア" <?php if($post_data["post"]["category"] == '暮らし・アイデア') {echo 'selected'; } ?>>暮らし・アイデア</option>
-										<option value="カラダ" <?php if($post_data["post"]["category"] == 'カラダ') {echo 'selected'; } ?>>カラダ</option>
-										<option value="おでかけ・グルメ" <?php if($post_data["post"]["category"] == 'おでかけ・グルメ') {echo 'selected'; } ?>>おでかけ・グルメ</option>
-										<option value="レシピ" <?php if($post_data["post"]["category"] == 'レシピ') {echo 'selected'; } ?>>レシピ</option>
-										<option value="おもしろ" <?php if($post_data["post"]["category"] == 'おもしろ') {echo 'selected'; } ?>>おもしろ</option>
-										<option value="アニメ・ゲーム" <?php if($post_data["post"]["category"] == 'アニメ・ゲーム') {echo 'selected'; } ?>>アニメ・ゲーム</option>
-										<option value="アプリ・ガジェット" <?php if($post_data["post"]["category"] == 'アプリ・ガジェット') {echo 'selected'; } ?>>アプリ・ガジェット</option>
-										<option value="デザイン・アート" <?php if($post_data["post"]["category"] == 'デザイン・アート') {echo 'selected'; } ?>>デザイン・アート</option>
-										<option value="開発・プログラミング" <?php if($post_data["post"]["category"] == '開発・プログラミング') {echo 'selected'; } ?>>開発・プログラミング</option>
-										<option value="イノベーション・テクノロジー" <?php if($post_data["post"]["category"] == 'イノベーション・テクノロジー') {echo 'selected'; } ?>>イノベーション・テクノロジー</option>
-										<option value="ビジネス・スタートアップ" <?php if($post_data["post"]["category"] == 'ビジネス・スタートアップ') {echo 'selected'; } ?>>ビジネス・スタートアップ</option>
-										<option value="お知らせ" <?php if($post_data["post"]["category"] == 'お知らせ') {echo 'selected'; } ?>>お知らせ</option>
+
+										<option value="風景" <?php if($post_data["post"]["category"] == '風景') {echo 'selected'; } ?>>風景</option>
+										<option value="アート" <?php if($post_data["post"]["category"] == 'アート') {echo 'selected'; } ?>>アート</option>
+										<option value="アニマル" <?php if($post_data["post"]["category"] == 'アニマル') {echo 'selected'; } ?>>アニマル</option>
+										<option value="フード" <?php if($post_data["post"]["category"] == 'フード') {echo 'selected'; } ?>>フード</option>
+										<option value="人物" <?php if($post_data["post"]["category"] == '人物') {echo 'selected'; } ?>>人物</option>
+										<option value="旅" <?php if($post_data["post"]["category"] == '旅') {echo 'selected'; } ?>>旅</option>
+										<option value="コンテスト" <?php if($post_data["post"]["category"] == 'コンテスト') {echo 'selected'; } ?>>コンテスト</option>
 
 <!--
 エンタメ・カルチャー           entertainment_culture

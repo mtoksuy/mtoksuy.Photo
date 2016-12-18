@@ -3583,17 +3583,16 @@ background: rgba(0, 0, 0, 0) url("http://sharetube.jp/assets/img/common/amazon_i
     border-bottom: 0 solid #DEDEDE;
   }
   .header_contents {
-    background-color: #fcfcfc;
+    background-color: #fff;
     opacity: .95;
     margin: 0;
-    max-width: 768px;
     position: fixed;
     width: 100%;
     z-index: 8;
-    border-bottom: 2px solid #E7E7E7;
+    border-bottom: 2px solid #eee;
   }
   .logo {
-    margin: 5px 0 2px 10px;
+		margin: 0 0 8px 10px;
   }
   .nav {
     margin: 20px 0 0 15px;

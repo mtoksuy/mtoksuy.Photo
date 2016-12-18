@@ -81,7 +81,7 @@ class Model_Login_Basis extends Model {
 			setcookie('sharetube_id', $value["sharetube_id"], time() + 2592000, '/');
 			setcookie('sharetube_login_key', $_COOKIE['sharetube_login_key'], time() + 2592000, '/');
 			// ユーザーがログインしたらお知らせのメールを送信する
-			Model_Mail_Basis::login_account_report_mail($_SESSION);
+//			Model_Mail_Basis::login_account_report_mail($_SESSION);
 			$login_check = true;
 		}
 			return $login_check;

@@ -7,6 +7,12 @@ fuel/app/config/db.php
 fuel/app/config/development/*
 fuel/app/config/production/*
 fuel/app/config/staging/*
+public/assets/img/article/*
+public/assets/img/draft/*
+public/assets/img/icon/*
+public/assets/img/creators/*
+
+
 public/feed.xml
 public/sitemap.xml
 !.gitkeep

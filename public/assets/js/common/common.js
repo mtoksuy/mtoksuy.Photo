@@ -1,14 +1,14 @@
 /*************************
 デバッグ変数コンストラクタ
 *************************/
-/*
+
 var p        = console.log;
 var print    = console.log;
 var var_dump = console.dir;
 var trace    = console.trace;
 var time     = console.time;
 var count    = console.count;
-*/
+
 /*****************
 ブラウザ・機種判別
 *****************/
@@ -83,13 +83,13 @@ var uaa = window.navigator.userAgent.toLowerCase();
 http切り替え
 ***********/
 if (location.host == 'localhost') {
-	var http = 'http://localhost/sharetube/';
+	var http = 'http://localhost/mtoksuy/';
 }
-	else if (location.host == 'sharetube.jp') {
-		var http = 'http://sharetube.jp/';
+	else if (location.host == 'mtoksuy.photo') {
+		var http = 'http://mtoksuy.photo/';
 	}
-		else if (location.host == 'www.sharetube.jp') {
-			var http = 'http://sharetube.jp/';
+		else if (location.host == 'www.mtoksuy.photo') {
+			var http = 'http://mtoksuy.photo/';
 		}
 //----------------------------------------------------------------------
 //文字列の先頭および末尾の連続する「半角空白・タブ文字・全角空白」を削除

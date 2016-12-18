@@ -497,17 +497,40 @@ class Model_Login_Post_Basis extends Model {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
+			//---------
+			//one_third
+			//---------
+			// サイズを指定して、背景用画像を生成
+			$width  = $image_w/3;
+			$height = $image_h/3;
+			$canvas = imagecreatetruecolor($width, $height);
+		$ada = imagecopyresampled($canvas,  // 背景画像
+		                   $image,   // コピー元画像
+		                   0,        // 背景画像の x 座標
+		                   0,        // 背景画像の y 座標
+		                   0,        // コピー元の x 座標
+		                   0,        // コピー元の y 座標
+		                   $width,   // 背景画像の幅
+		                   $height,  // 背景画像の高さ
+		                   $image_w, // コピー元画像ファイルの幅
+		                   $image_h  // コピー元画像ファイルの高さ
+		                  );
+				// 画像ファイル作成
+				switch ($type_str) {
+					case 'jpeg':
+						imagejpeg($canvas, $create_dir.'one_third/'.$image_path, 100);
+					break;
+					case 'gif':
+						imagegif($canvas, $create_dir.'one_third/'.$image_path);
+					break;
+					case 'png':
+						imagepng($canvas, $create_dir.'one_third/'.$image_path, 6);
+					break;
+					default:
+					break;
+				}
+			// パーミッション変更
+			chmod($create_dir.'one_third/'.$image_path, 0777);
 
 
 			//------
@@ -796,6 +819,7 @@ class Model_Login_Post_Basis extends Model {
 			$draft_thumbnail_facebook_ogp_half_path      = $draft_thumbnail_path.'/facebook_ogp_half/'.$article_create_data_array["thumbnail_image"];
 			$draft_thumbnail_facebook_ogp_half_half_path = $draft_thumbnail_path.'/facebook_ogp_half_half/'.$article_create_data_array["thumbnail_image"];
 			$draft_thumbnail_facebook_ogp_reseve_path    = $draft_thumbnail_path.'/facebook_ogp_reseve/'.$article_create_data_array["thumbnail_image"];
+			$draft_thumbnail_one_third_path              = $draft_thumbnail_path.'/one_third/'.$article_create_data_array["thumbnail_image"];
 			$draft_thumbnail_original_path               = $draft_thumbnail_path.'/original/'.$article_create_data_array["thumbnail_image"];
 			$draft_thumbnail_square_path                 = $draft_thumbnail_path.'/square/'.$article_create_data_array["thumbnail_image"];
 			$draft_thumbnail_square_200px_path           = $draft_thumbnail_path.'/square_200px/'.$article_create_data_array["thumbnail_image"];
@@ -813,6 +837,7 @@ class Model_Login_Post_Basis extends Model {
 			$article_thumbnail_facebook_ogp_half_path      = $article_thumbnail_path.'/facebook_ogp_half/'.$thumbnail_name;
 			$article_thumbnail_facebook_ogp_half_half_path = $article_thumbnail_path.'/facebook_ogp_half_half/'.$thumbnail_name;
 			$article_thumbnail_facebook_ogp_reseve_path    = $article_thumbnail_path.'/facebook_ogp_reseve/'.$thumbnail_name;
+			$article_thumbnail_one_third_path               = $article_thumbnail_path.'/one_third/'.$thumbnail_name;
 			$article_thumbnail_original_path               = $article_thumbnail_path.'/original/'.$thumbnail_name;
 			$article_thumbnail_square_path                 = $article_thumbnail_path.'/square/'.$thumbnail_name;
 			$article_thumbnail_square_200px_path           = $article_thumbnail_path.'/square_200px/'.$thumbnail_name;
@@ -825,6 +850,7 @@ class Model_Login_Post_Basis extends Model {
 			copy($draft_thumbnail_facebook_ogp_half_path, $article_thumbnail_facebook_ogp_half_path);
 			copy($draft_thumbnail_facebook_ogp_half_half_path, $article_thumbnail_facebook_ogp_half_half_path);
 			copy($draft_thumbnail_facebook_ogp_reseve_path, $article_thumbnail_facebook_ogp_reseve_path);
+			copy($draft_thumbnail_one_third_path, $article_thumbnail_one_third_path);
 			copy($draft_thumbnail_original_path, $article_thumbnail_original_path);
 			copy($draft_thumbnail_square_path, $article_thumbnail_square_path);
 			copy($draft_thumbnail_square_200px_path, $article_thumbnail_square_200px_path);
