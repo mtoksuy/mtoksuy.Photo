@@ -207,26 +207,28 @@ class Model_Article_Html extends Model {
 				// まとめコンテンツリストHTML取得
 				$value["sub_text"] = Model_Login_Matome_Preview_Basis::matome_content_block_list_html_get($value["sub_text"]);
 			}
-
+			$image_path = INTERNAL_PATH.'public/assets/img/article/'.$year_time.'/original/'.$article_thumbnail_image;
+			// 写真データHTML取得
+			$photo_exif_html = Model_Article_Html::photo_exif_html_get($image_path);
 
 			// 記事HTML生成
 			$article_html = ('
 				<article class="article_list" data-article_number="'.$value["primary_id"].'" data-article_year="'.$year_time.'">
-					<div class="article_list_contents">
+					<div class="article_list_contents clearfix">
 						<div class="article_data_header">
 							<!-- タイトル -->
 							<a href="'.HTTP.''.$article_type.'/'.$value["link"].'/">
 								<h1>'.$value["title"].'</h1>
 							</a>
-							<!-- アップロードタイム -->
-							<div class="release_date_time">
-								<span class="typcn typcn-watch"></span><span>Release Date：</span><time datetime="'.$local_time.'" pubdate="pubdate">'.$local_japanese_time.'</time>
-							</div>
 						</div>
 							<!-- 本文コンテンツ -->
 						<div class="article_list_contents_sub_text">
 							'.$value["sub_text"].'
 						</div>
+
+							<!-- exif情報 -->
+							'.$photo_exif_html.'
+
 					</div>
 					<!-- 前後のまとめ -->
 					'.$detail_press_bottom_html.'
@@ -1512,8 +1514,8 @@ var_dump($end_point);
 	//------------
 	//写真HTML生成
 	//------------
-	static function photo_html_create($value, $year_time, $preview_frg) {
-//		var_dump($value);
+	static function photo_html_create($article_data_array, $year_time, $preview_frg) {
+//		pre_var_dump($article_data_array);
 		switch($preview_frg) {
 			case false:
 				$draft = '';
@@ -1525,25 +1527,135 @@ var_dump($end_point);
 
 			break;
 		}
-			$photo_html = ('
-				<div class="article_photo">
-						<img class="article_photo_image" width="" height="" title="'.$value["article_title"].'" alt="'.$value["article_title"].'" src="'.HTTP.'assets/img/'.$draft.'article/'.$year_time.'/one_third/'.$value["article_thumbnail_image"].'" full-image-href-data="'.HTTP.'/assets/img/'.$draft.'article/'.$year_time.'/original/'.$value["article_thumbnail_image"].'">
-
-					<div class="before_next_link">
-						<div class="arrow_left">
-							<a href="" class="o_8">
-								<img class="" width="15px" height="34px" src="'.HTTP.'assets/img/common/arrow_left_1.png">	
-							</a>
-						</div>
+		// 前のまとめ、次のまとめTML生成
+		$previous_next_array = Model_Article_Html::photo_previous_next_array_create($article_data_array['article_primary_id'], 'article');
+		if($previous_next_array['preview']) {
+			$preview_arrow_left_html = '
+				<div class="arrow_left">
+					<a href="'.$previous_next_array['preview'].'" class="o_8">
+						<img class="" width="15px" height="34px" src="'.HTTP.'assets/img/common/arrow_left_1.png">	
+					</a>
+				</div>';
+		}
+		if($previous_next_array['next']) {
+			$next_arrow_left_html = '
 						<div class="arrow_right">
-							<a href="" class="o_8">
+							<a href="'.$previous_next_array['next'].'" class="o_8">
 								<img class="" width="15px" height="34px" src="'.HTTP.'assets/img/common/arrow_right_1.png">	
 							</a>
-						</div>
-					</div>
-				</div>');
+						</div>';
+		}
+		$photo_html = ('
+			<div class="article_photo">
+					<img class="article_photo_image" width="" height="" title="'.$article_data_array["article_title"].'" alt="'.$article_data_array["article_title"].'" src="'.HTTP.'assets/img/'.$draft.'article/'.$year_time.'/one_third/'.$article_data_array["article_thumbnail_image"].'" full-image-href-data="'.HTTP.'/assets/img/'.$draft.'article/'.$year_time.'/original/'.$article_data_array["article_thumbnail_image"].'">
+
+				<div class="before_next_link">
+					'.$preview_arrow_left_html.'
+					'.$next_arrow_left_html.'
+				</div>
+			</div>');
 		return $photo_html;
 	}
+	//--------------------------
+	//前の写真、次の写真HTML生成
+	//--------------------------
+	static function photo_previous_next_array_create($article_primary_id , $article_type) {
+		// 変数
+		$preview_html        = '';
+		$next_html           = '';
+		$previous_next_array = array();
+		// 前の記事、次の記事データ取得
+		$article_previous_next_res_array = Model_Article_Basis::article_previous_next_get($article_primary_id , $article_type);
+		// 前の記事HTML生成
+		foreach($article_previous_next_res_array["previous"] as $key => $value) {
+			$preview_url = (''.HTTP.$article_type.'/'.$value["link"].'/');
+		}
+		// 次の記事HTML生成
+		foreach($article_previous_next_res_array["next"] as $key => $value) {
+			$next_url = (''.HTTP.$article_type.'/'.$value["link"].'/');
+		}
+		$previous_next_array['preview'] = $preview_url;
+		$previous_next_array['next']    = $next_url;
+		return $previous_next_array;
+	}
+	////////////////////
+	//写真データHTML取得
+	////////////////////
+	public static function photo_exif_html_get($image_path) {
+		// exif情報取得
+		$exif = @exif_read_data($image_path);
+		$photo_date = date('Y-n-j', strtotime(($exif['DateTimeOriginal'])));
+		$photo_exif_html = '
+			<div class="photo_exif_data">
+				<ul>
+					<li><span>メーカー：</span>'.$exif['Make'].'</li>
+					<li><span>カメラ：</span>'.$exif['Model'].'</li>
+					<li><span>撮影日：</span><time datetime="'.$photo_date.'" pubdate="pubdate">'.date('Y年n月j日', strtotime(($exif['DateTimeOriginal']))).'</time></li>
+					<li><span>サイズ：</span>'.$exif['COMPUTED']['Width'].'px × '.$exif['COMPUTED']['Height'].'px</li>
+					<li><span>レンズ：</span>'.$exif['COMPUTED']['CCDWidth'].'</li>
+					<li><span>絞り：</span>'.$exif['COMPUTED']['ApertureFNumber'].'</li>
+					<li><span>シャッタータイム：</span>'.$exif['ExposureTime'].'</li>
+					<li><span>ISO：</span>'.$exif['ISOSpeedRatings'].'</li>
+				</ul>
+			</div>';
+		return $photo_exif_html;
+	}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

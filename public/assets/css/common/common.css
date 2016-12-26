@@ -19,6 +19,16 @@ table, ul {
   border-left: 4px solid #ED482D;
 }
 
+.heading_6 {
+	line-height: 1.4;
+	padding: 15px;
+	margin: 30px -15px 15px;
+	font-size: 125%;
+	border-left: 4px solid #6fa0df;
+}
+
+
+
 .drawer_nav, body {
   overflow-x: hidden;
 }
@@ -1173,7 +1183,7 @@ menu_list
     margin: 0 auto;
     padding: 30px 0 0;
     position: relative;
-    width: 66%;
+    width: 85%;
     z-index: 7;
 }
 .main_contents {
@@ -1214,17 +1224,35 @@ card_photo
 
 
 .card_photo ul {
-  margin: 5px;
-  padding: 0;
-}
+    -webkit-column-count: 3;
+    -webkit-column-gap: 10px;
+    -webkit-column-fill: auto;
+    -moz-column-count: 3;
+    -moz-column-gap: 10px;
+    -moz-column-fill: balance;
+    column-count: 3;
+    column-gap: 10px;
+    column-fill: auto;
+    margin: 0;
+    padding: 0;
+		list-style: none;
 
+
+
+
+
+
+}
 .card_photo li {
+	margin: 0 0 10px;
+/*
   box-sizing: border-box;
   float: left;
   list-style: none;
   margin: 0 0 150px;
   position: relative;
   width: 100%;
+*/
 }
 
 .card_photo li:hover {
@@ -3252,11 +3280,11 @@ background: rgba(0, 0, 0, 0) url("http://sharetube.jp/assets/img/common/amazon_i
 }
 
 .footer {
-  background-color: #403C3B;
-  border-top: 5px solid #BBC798;
-  margin: 30px 0 0;
-  padding: 0;
-  z-index: 7;
+    background-color: #212124;
+    border-top: 5px solid #6fa0df;
+    margin: 30px 0 0;
+    padding: 0;
+    z-index: 7;
 }
 
 .footer_contents {
@@ -3389,8 +3417,8 @@ background: rgba(0, 0, 0, 0) url("http://sharetube.jp/assets/img/common/amazon_i
 }
 
 .footer_contents_box h5 {
-  border-bottom: 2px solid #74675E;
-  color: #AB998E;
+  border-bottom: 2px solid #9d9d9d;
+  color: #dfdfdf;
   font-size: 92%;
   margin: 0 0 10px;
   padding: 0 0 5px;
@@ -3402,14 +3430,14 @@ background: rgba(0, 0, 0, 0) url("http://sharetube.jp/assets/img/common/amazon_i
 }
 
 .footer_contents_box li {
-  color: #71655D;
+  color: #dfdfdf;
   font-size: 89%;
   list-style: none;
   margin: 0 0 5px;
 }
 
 .footer_contents_box a, .footer_contents_box a:visited {
-  color: #AB998E;
+  color: #dfdfdf;
 }
 
 .footer_contents_outer {
@@ -3436,7 +3464,7 @@ background: rgba(0, 0, 0, 0) url("http://sharetube.jp/assets/img/common/amazon_i
 }
 
 .footer_bottom {
-  background-color: #211E1C;
+  background-color: #131313;
   height: 84px;
 }
 
@@ -3453,9 +3481,11 @@ background: rgba(0, 0, 0, 0) url("http://sharetube.jp/assets/img/common/amazon_i
   padding: 30px 0 0 10px;
   text-align: left;
 }
-
+#copy span {
+	color: #393f43;
+}
 #copy a, #copy a:visited {
-  color: #71655D;
+  color: #dfdfdf;
 }
 
 .footer_bottom_contents_outer {
@@ -3578,6 +3608,11 @@ background: rgba(0, 0, 0, 0) url("http://sharetube.jp/assets/img/common/amazon_i
   .heading_3, .heading_4 {
     margin: 30px -15px 15px -10px;
   }
+	.heading_6 {
+		margin: 30px 0 15px;
+  }
+
+
   #header {
     margin: 0;
     border-bottom: 0 solid #DEDEDE;
@@ -3618,9 +3653,7 @@ background: rgba(0, 0, 0, 0) url("http://sharetube.jp/assets/img/common/amazon_i
     overflow: hidden;
     margin: 0 auto;
   }
-  .card_photo li, .card_photo ul {
-    margin: 0;
-  }
+
   .card_photo_contents_time {
     bottom: 5px;
     left: 10px;
@@ -3629,9 +3662,11 @@ background: rgba(0, 0, 0, 0) url("http://sharetube.jp/assets/img/common/amazon_i
   .card_photo_contents_author {
     bottom: 5px;
   }
-  .card_photo figure {
-    margin: 0 0 24px;
-  }
+	.card_photo ul {
+	    padding: 0 10px;
+	}
+
+
   .blockquote_style_1:before {
     top: 21px;
   }
@@ -3677,8 +3712,11 @@ background: rgba(0, 0, 0, 0) url("http://sharetube.jp/assets/img/common/amazon_i
     float: right;
   }
   .logo {
-    margin: 5px 10px 2px;
+		margin: 0 10px 7px 2px;
   }
+	.menu_list {
+	    float: left;
+	}
   .main {
     padding: 61px 0 0;
   }
@@ -3827,9 +3865,7 @@ background: rgba(0, 0, 0, 0) url("http://sharetube.jp/assets/img/common/amazon_i
   .card_photo_contents {
     width: 90%;
   }
-  .card_photo figure {
-    width: 10%;
-  }
+
   .card_photo_contents_summary {
     display: none;
   }
@@ -3850,17 +3886,43 @@ background: rgba(0, 0, 0, 0) url("http://sharetube.jp/assets/img/common/amazon_i
 480px以下の設定
 **************/
 @media screen and (min-width: 0px) and (max-width: 480px) {
-
-
+	/*******
+	ヘッダー
+	*******/
+	.menu_list ul .menu_list_items {
+	    margin: 12px 0 0 20px;
+	}
+	/*********
+	写真リスト
+	*********/
   .card_photo_contents {
     width: 85%;
-  }
-  .card_photo figure {
-    width: 15%;
   }
 	.card_photo img {
 	    padding: 2px;
 	}
+
+	.card_photo ul {
+		-webkit-column-count: 2;
+		-webkit-column-gap: 5px;
+		-webkit-column-fill: balance;
+		-moz-column-count: 2;
+		-moz-column-gap: 5px;
+		-moz-column-fill: balance;
+		column-count: 2;
+		column-gap: 5px;
+		column-fill: balance;
+		padding: 0 5px;
+	}
+	.card_photo li {
+	    margin: 0 0 5px;
+	}
+
+
+
+
+
+
 	/***
 	広告
 	***/
@@ -3937,12 +3999,6 @@ background: rgba(0, 0, 0, 0) url("http://sharetube.jp/assets/img/common/amazon_i
     top: -30px;
     width: 140px;
 	}
-
-
-
-
-
-
 }
 
 /**************
@@ -3976,7 +4032,7 @@ background: rgba(0, 0, 0, 0) url("http://sharetube.jp/assets/img/common/amazon_i
     line-height: 125%;
   }
   .main {
-    padding: 0;
+
   }
   .heading_3, .heading_4 {
     margin: 30px -10px 15px -5px;

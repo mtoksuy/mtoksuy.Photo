@@ -80,6 +80,8 @@ class Controller_Article extends Controller_Article_Template {
 			'article_html' => $article_data_array["article_html"],
 		), false);
 
+
+		// 年取得
 		$year = $article_data_array['article_year_time'];
 		// PhotoのHTML生成
 		$photo_html = Model_Article_Html::photo_html_create($article_data_array, $year, false);

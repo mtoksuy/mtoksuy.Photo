@@ -562,4 +562,5 @@ if($detect->isMobile() || $detect->isTablet()) {
 		if($recommend_article_paging_data_array['max_paging_num'] >= $recommend_article_paging_data_array['paging_num']) { $is_recommendarticle = true; } else { $is_recommendarticle = false; }
 		return $is_recommendarticle;
 	}
+
 }

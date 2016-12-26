@@ -41,12 +41,6 @@ p($('.article_photo img').height());// 519
 */
 
 
-
-
-
-
-
-
 	////////////
 	//横長の場合
 	////////////
@@ -135,9 +129,6 @@ p($('.article_photo img').height());// 519
 HTML読み込み後に処理
 *******************/
 $(window).load(function(){
-
-
-
 	$('.photo').on( {
 		'click' : function() {
 			full_image_href_data = $('.article_photo .article_photo_image').attr('full-image-href-data');
@@ -145,10 +136,6 @@ $(window).load(function(){
 			window.open(full_image_href_data);
 		}
 }, '.article_photo .article_photo_image');
-
-
-
-
 	photo_change();
 	//------------------
 	//リサイズの時の参考

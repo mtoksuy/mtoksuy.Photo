@@ -30,7 +30,7 @@
 					<div class="footer_bottom_contents">
 						<!-- コピーライト -->
 						<section id="copy">
-							<p class="m_0">&copy; <?php echo date('Y'); ?> <a href="<?php echo Uri::base(); ?>">mtoksuy.Photo</a></p>
+							<p class="m_0"><span>&copy; <?php echo date('Y'); ?> </span><a href="<?php echo Uri::base(); ?>">mtoksuy.Photo</a></p>
 						</section>
 					</div>
 				</div>
