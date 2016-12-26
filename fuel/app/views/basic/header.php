@@ -12,10 +12,10 @@
 				<div class="menu_list">
 					<ul>
 						<li class="menu_list_items">
-							<span><a href="<?php echo HTTP;?>about/">ABOUT</a></span>
+							<span><a href="<?php echo HTTP;?>permalink/about/">ABOUT</a></span>
 						</li>
 						<li class="menu_list_items">
-							<span><a href="<?php echo HTTP;?>contact/">CONTACT</a></span>
+							<span><a href="<?php echo HTTP;?>permalink/contact/">CONTACT</a></span>
 						</li>
 					</ul>
 				</div>
