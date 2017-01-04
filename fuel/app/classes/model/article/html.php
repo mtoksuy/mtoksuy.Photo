@@ -1529,30 +1529,70 @@ var_dump($end_point);
 		}
 		// 前のまとめ、次のまとめTML生成
 		$previous_next_array = Model_Article_Html::photo_previous_next_array_create($article_data_array['article_primary_id'], 'article');
-		if($previous_next_array['preview']) {
-			$preview_arrow_left_html = '
-				<div class="arrow_left">
-					<a href="'.$previous_next_array['preview'].'" class="o_8">
-						<img class="" width="15px" height="34px" src="'.HTTP.'assets/img/common/arrow_left_1.png">	
-					</a>
-				</div>';
-		}
+
+//pre_var_dump($previous_next_array);
+		// ネクストボタン
 		if($previous_next_array['next']) {
 			$next_arrow_left_html = '
-						<div class="arrow_right">
+						<div class="arrow_left">
 							<a href="'.$previous_next_array['next'].'" class="o_8">
-								<img class="" width="15px" height="34px" src="'.HTTP.'assets/img/common/arrow_right_1.png">	
+								<img class="" width="15px" height="34px" src="'.HTTP.'assets/img/common/arrow_left_1.png">	
 							</a>
 						</div>';
 		}
+		// プレビューボタン
+		if($previous_next_array['preview']) {
+			$prrview_arrow_right_html = '
+				<div class="arrow_right">
+					<a href="'.$previous_next_array['preview'].'" class="o_8">
+						<img class="" width="15px" height="34px" src="'.HTTP.'assets/img/common/arrow_right_1.png">	
+					</a>
+				</div>';
+		}
+
+		// フルスクリーン用のネクストボタン
+		if($previous_next_array['next']) {
+			$fullscreen_next_arrow_left_html = '
+						<div class="fullscreen_arrow_left">
+							<a href="'.$previous_next_array['next'].'" class="o_8" image-url-data="'.$previous_next_array['next_image_url'].'" url-number-data="'.$previous_next_array['next_url_number'].'" before-primary-id-data="'.$article_data_array['article_primary_id'].'">
+								<img class="" width="15px" height="34px" src="'.HTTP.'assets/img/common/fullscreen_arrow_left_1.png">	
+							</a>
+						</div>';
+		}
+		// フルスクリーン用のプレビューボタン
+		if($previous_next_array['preview']) {
+			$fullscreen_prrview_arrow_right_html = '
+				<div class="fullscreen_arrow_right">
+					<a href="'.$previous_next_array['preview'].'" class="o_8" image-url-data="'.$previous_next_array['preview_image_url'].'" url-number-data="'.$previous_next_array['preview_url_number'].'" before-primary-id-data="'.$article_data_array['article_primary_id'].'">
+						<img class="" width="15px" height="34px" src="'.HTTP.'assets/img/common/fullscreen_arrow_right_1.png">	
+					</a>
+				</div>';
+		}
+
+		// photo_html
 		$photo_html = ('
 			<div class="article_photo">
-					<img class="article_photo_image" width="" height="" title="'.$article_data_array["article_title"].'" alt="'.$article_data_array["article_title"].'" src="'.HTTP.'assets/img/'.$draft.'article/'.$year_time.'/one_third/'.$article_data_array["article_thumbnail_image"].'" full-image-href-data="'.HTTP.'/assets/img/'.$draft.'article/'.$year_time.'/original/'.$article_data_array["article_thumbnail_image"].'">
+				<img class="article_photo_image" width="auto" height="300" title="'.$article_data_array["article_title"].'" alt="'.$article_data_array["article_title"].'" src="'.HTTP.'assets/img/'.$draft.'article/'.$year_time.'/one_third/'.$article_data_array["article_thumbnail_image"].'" full-image-href-data="'.HTTP.'assets/img/'.$draft.'article/'.$year_time.'/original/'.$article_data_array["article_thumbnail_image"].'">
 
 				<div class="before_next_link">
-					'.$preview_arrow_left_html.'
 					'.$next_arrow_left_html.'
+					'.$prrview_arrow_right_html.'
+					<div class="full_screen">
+						<a href="" class="o_8">
+							<img class="" width="15px" height="15px" src="'.HTTP.'assets/img/common/full_screen_1.png">	
+						</a>
+					</div>
 				</div>
+
+				<div id="fullscreen">
+					<img class="fullscreen_image" width="auto" height="100%" title="'.$article_data_array["article_title"].'" alt="'.$article_data_array["article_title"].'" src="'.HTTP.'assets/img/'.$draft.'article/'.$year_time.'/one_third/'.$article_data_array["article_thumbnail_image"].'" full-image-href-data="'.HTTP.'assets/img/'.$draft.'article/'.$year_time.'/original/'.$article_data_array["article_thumbnail_image"].'">
+					<div class="full_screen_close o_8">
+					  <a href="" class="exitfullscreen" style="display: none;" first-primary-id-data="'.$article_data_array['article_primary_id'].'">×</a>
+					</div>
+					'.$fullscreen_next_arrow_left_html.'
+					'.$fullscreen_prrview_arrow_right_html.'
+				</div>
+
 			</div>');
 		return $photo_html;
 	}
@@ -1568,14 +1608,33 @@ var_dump($end_point);
 		$article_previous_next_res_array = Model_Article_Basis::article_previous_next_get($article_primary_id , $article_type);
 		// 前の記事HTML生成
 		foreach($article_previous_next_res_array["previous"] as $key => $value) {
-			$preview_url = (''.HTTP.$article_type.'/'.$value["link"].'/');
+			$preview_url        = (''.HTTP.$article_type.'/'.$value["link"].'/');
+			$preview_url_number = $value["link"];
+
+			$unix_time            = strtotime($value["update_time"]);
+			$local_time           = date('Y-m-d', $unix_time);
+			$local_japanese_time  = date('Y年m月d日', $unix_time);
+			$article_year_time    = date('Y', $unix_time);
+			$preview_image_url    = HTTP.'assets/img/article/'.$article_year_time.'/original/'.$value["thumbnail_image"];
 		}
 		// 次の記事HTML生成
 		foreach($article_previous_next_res_array["next"] as $key => $value) {
-			$next_url = (''.HTTP.$article_type.'/'.$value["link"].'/');
+			$next_url        = (''.HTTP.$article_type.'/'.$value["link"].'/');
+			$next_url_number = $value["link"];
+
+			$unix_time            = strtotime($value["update_time"]);
+			$local_time           = date('Y-m-d', $unix_time);
+			$local_japanese_time  = date('Y年m月d日', $unix_time);
+			$article_year_time    = date('Y', $unix_time);
+			$next_image_url       = HTTP.'assets/img/article/'.$article_year_time.'/original/'.$value["thumbnail_image"];
 		}
-		$previous_next_array['preview'] = $preview_url;
-		$previous_next_array['next']    = $next_url;
+		$previous_next_array['preview']            = $preview_url;
+		$previous_next_array['next']               = $next_url;
+		$previous_next_array['preview_url_number'] = $preview_url_number;
+		$previous_next_array['next_url_number']    = $next_url_number;
+		$previous_next_array['preview_image_url']  = $preview_image_url;
+		$previous_next_array['next_image_url']     = $next_image_url;
+
 		return $previous_next_array;
 	}
 	////////////////////
