@@ -25,6 +25,7 @@ table, ul {
 	margin: 30px -15px 15px;
 	font-size: 125%;
 	border-left: 4px solid #6fa0df;
+	border-left: 4px solid #FEE14F;
 }
 
 
@@ -1048,7 +1049,7 @@ a:hover {
 }
 .logo {
   float: left;
-	margin: 0 5px 9px 15px;
+	margin: 5px 5px 8px 15px;
 }
 
 /********
@@ -1064,7 +1065,7 @@ menu_list
 }
 .menu_list ul .menu_list_items {
 	float: left;
-	margin: 12px 0 0 25px;
+	margin: 14px 0 0 25px;
 	position: relative;
 }
 .menu_list ul .menu_list_items span {
@@ -1224,6 +1225,7 @@ card_photo
 
 
 .card_photo ul {
+/*
     -webkit-column-count: 3;
     -webkit-column-gap: 10px;
     -webkit-column-fill: auto;
@@ -1233,18 +1235,19 @@ card_photo
     column-count: 3;
     column-gap: 10px;
     column-fill: auto;
+*/
     margin: 0;
     padding: 0;
 		list-style: none;
-
-
-
-
-
-
+		margin: 0 auto;
+  box-sizing: border-box;
 }
 .card_photo li {
-	margin: 0 0 10px;
+	margin: 0px;
+
+	box-shadow: 0 0 0 1px #ffffff;
+
+	box-sizing: border-box;
 /*
   box-sizing: border-box;
   float: left;
@@ -1254,9 +1257,20 @@ card_photo
   width: 100%;
 */
 }
+.card_photo li:nth-child(3n) {
+
+}
+
 
 .card_photo li:hover {
 
+}
+
+.card_photo article {
+
+}
+.card_photo article a {
+	display: block;
 }
 
 .card_photo figure {
@@ -1359,6 +1373,19 @@ card_photo
 .article_list_text {
   margin: 15px 10px 10px;
 }
+/*************
+gridプラグイン
+*************/
+.grid {
+	box-sizing: border-box;
+}
+.grid-item {
+width: 33.36333333333%;
+width: 33.333333333333333%;
+ box-sizing: border-box;
+ }
+.grid-item--width2 { width: 400px; }
+
 
 /***************
 キュレーター募集
@@ -3281,7 +3308,9 @@ background: rgba(0, 0, 0, 0) url("http://sharetube.jp/assets/img/common/amazon_i
 
 .footer {
     background-color: #212124;
+/*
     border-top: 5px solid #6fa0df;
+*/
     margin: 30px 0 0;
     padding: 0;
     z-index: 7;
@@ -3417,7 +3446,7 @@ background: rgba(0, 0, 0, 0) url("http://sharetube.jp/assets/img/common/amazon_i
 }
 
 .footer_contents_box h5 {
-  border-bottom: 2px solid #9d9d9d;
+  border-bottom: 2px solid #FEE14F;
   color: #dfdfdf;
   font-size: 92%;
   margin: 0 0 10px;
@@ -3626,8 +3655,9 @@ background: rgba(0, 0, 0, 0) url("http://sharetube.jp/assets/img/common/amazon_i
     z-index: 8;
     border-bottom: 2px solid #eee;
   }
+
   .logo {
-		margin: 0 0 8px 10px;
+		margin: 4px 0px 2px 10px;
   }
   .nav {
     margin: 20px 0 0 15px;
@@ -3652,6 +3682,7 @@ background: rgba(0, 0, 0, 0) url("http://sharetube.jp/assets/img/common/amazon_i
     padding: 61px 0 0;
     overflow: hidden;
     margin: 0 auto;
+		box-sizing: border-box;
   }
 
   .card_photo_contents_time {
@@ -3663,7 +3694,11 @@ background: rgba(0, 0, 0, 0) url("http://sharetube.jp/assets/img/common/amazon_i
     bottom: 5px;
   }
 	.card_photo ul {
+		margin: 0 -3px 0 -1px;
+		margin:0px -1px 0px 0px;
+/*
 	    padding: 0 10px;
+*/
 	}
 
 
@@ -3712,7 +3747,7 @@ background: rgba(0, 0, 0, 0) url("http://sharetube.jp/assets/img/common/amazon_i
     float: right;
   }
   .logo {
-		margin: 0 10px 7px 2px;
+		margin: 4px 10px 2px 0px;
   }
 	.menu_list {
 	    float: left;
@@ -3870,7 +3905,9 @@ background: rgba(0, 0, 0, 0) url("http://sharetube.jp/assets/img/common/amazon_i
     display: none;
   }
   .card_photo img {
+/*
     padding: 3px;
+*/
   }
   .article_list_contents h1 {
     font-size: 120%;
@@ -3899,10 +3936,13 @@ background: rgba(0, 0, 0, 0) url("http://sharetube.jp/assets/img/common/amazon_i
     width: 85%;
   }
 	.card_photo img {
+/*
 	    padding: 2px;
+*/
 	}
 
 	.card_photo ul {
+/*
 		-webkit-column-count: 2;
 		-webkit-column-gap: 5px;
 		-webkit-column-fill: balance;
@@ -3913,9 +3953,12 @@ background: rgba(0, 0, 0, 0) url("http://sharetube.jp/assets/img/common/amazon_i
 		column-gap: 5px;
 		column-fill: balance;
 		padding: 0 5px;
+*/
 	}
 	.card_photo li {
+/*
 	    margin: 0 0 5px;
+*/
 	}
 
 
@@ -4237,8 +4280,4 @@ background: rgba(0, 0, 0, 0) url("http://sharetube.jp/assets/img/common/amazon_i
     top: -30px;
     width: 140px;
 	}
-
-
-
-
 }

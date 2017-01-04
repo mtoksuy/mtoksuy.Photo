@@ -104,9 +104,6 @@ sidebar
     margin: 0 auto;
     width: 300px;
 }
-
-
-
 /****
 photo
 ****/
@@ -116,6 +113,7 @@ photo
 .article_photo {
     background-color: #212124;
     width: 100%;
+		height: 650px;
 		position: relative;
 		z-index: 10;
 }
@@ -127,32 +125,40 @@ photo
 	position: relative;
 	margin: 0 auto;
 	display: block;
+	visibility: hidden;
 	height: 100%;
 	width: auto;
+/*
+	height: auto;
+	width: 100%;
+*/
 	z-index: 11;
 }
-
+/***************
+写真上のボタン群
+***************/
 .before_next_link {
     height: 100%;
     left: 0;
     position: absolute;
     top: 0;
     width: 100%;
+		z-index: 12;
 }
 .before_next_link .arrow_left {
+		visibility: hidden;
     left: 2%;
     position: absolute;
     top: 43%;
 		z-index: 12;
 }
 .before_next_link .arrow_right {
+	visibility: hidden;
     right: 2%;
     position: absolute;
     top: 43%;
 		z-index: 12;
 }
-
-
 .before_next_link .arrow_left a,
 .before_next_link .arrow_right a {
 
@@ -162,7 +168,145 @@ photo
 	display: block;
 	padding: 15px;
 }
+/*******************
+フルスクリーンボタン
+*******************/
+.full_screen {
+    position: absolute;
+    right: 0;
+    top: 0;
+    z-index: 12;
+}
+.full_screen a {
 
+}
+.full_screen a img {
+	display: block;
+	padding: 15px;
+}
+/*************
+フルスクリーン
+*************/
+#fullscreen {
+	display: none;
+	background-color: #212124;
+	position: relative;
+left: -9999px;
+}
+
+/* これはダメみたい 謎 */
+#fullscreen:-webkit-full-screen,
+#fullscreen:-moz-full-screen,
+#fullscreen:-webkit-fullscreen,
+#fullscreen:-moz-fullscreen,
+#fullscreen:-ms-fullscreen,
+#fullscreen:fullscreen {
+    bottom: 0 !important;
+    box-sizing: border-box !important;
+    height: 100% !important;
+    left: 0 !important;
+    margin: 0 !important;
+    max-height: none !important;
+    max-width: none !important;
+    min-height: 0 !important;
+    min-width: 0 !important;
+    object-fit: contain;
+    position: fixed !important;
+    right: 0 !important;
+    top: 0 !important;
+    transform: none !important;
+    width: 100% !important;
+}
+
+
+#fullscreen:-webkit-full-screen{
+	position : absolute ;
+	left     : 0 ;
+	top      : 0 ;
+	width    : 100% ;
+	height   : 100% ;
+}
+#fullscreen:-moz-full-screen {
+	position : absolute ;
+	left     : 0 ;
+	top      : 0 ;
+	width    : 100% ;
+	height   : 100% ;
+}
+#fullscreen:-ms-fullscreen {
+	position : absolute ;
+	left     : 0 ;
+	top      : 0 ;
+	width    : 100% ;
+	height   : 100% ;
+}
+#fullscreen:fullscreen {
+	position : absolute ;
+	left     : 0 ;
+	top      : 0 ;
+	width    : 100% ;
+	height   : 100% ;
+}
+
+
+
+
+
+#fullscreen img {
+    display: block;
+    margin: 0 auto;
+    position: relative;
+    z-index: 15;
+}
+.full_screen_close {
+    position: absolute;
+    right: 2%;
+    top: 2%;
+    z-index: 16;
+}
+.full_screen_close a {
+		text-decoration: none;
+		color: #8f8f8f;
+    display: block;
+    font-size: 200%;
+    height: 15px;
+    width: 15px;
+}
+.fullscreen_arrow_left {
+    left: 2%;
+    position: absolute;
+    top: 43%;
+		z-index: 16;
+}
+.fullscreen_arrow_left a {
+
+}
+.fullscreen_arrow_right {
+    right: 2%;
+    position: absolute;
+    top: 43%;
+		z-index: 16;
+}
+.fullscreen_arrow_right a {
+
+}
+.fullscreen_arrow_left a img,
+.fullscreen_arrow_right a img {
+	display: block;
+	padding: 15px;
+
+}
+
+
+
+
+
+
+
+
+/*******
+写真情報
+*******/
 .photo_exif_data {
     display: block;
     float: right;
