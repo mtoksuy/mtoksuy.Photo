@@ -5,7 +5,7 @@
 				<!-- logo -->
 				<div class="logo">
 					<h1>
-						<a class="o_8" href="<?php echo Uri::base(); ?>"><img src="<?php echo Uri::base(); ?>assets/img/logo/logo_5.png" width="130" height="" alt="mtoksuy.Photo" title="mtoksuy.Photo"></a>
+						<a class="o_8" href="<?php echo Uri::base(); ?>"><img src="<?php echo Uri::base(); ?>assets/img/logo/logo_13.png" width="94" height="" alt="松岡 鈴" title="松岡 鈴"></a>
 					</h1>
 				</div>
 				<!--  -->

@@ -53,10 +53,10 @@
     width: 75%;
 }
 .contact_form input[type="submit"] {
-    background-color: #6fa0df;
+    background-color: #FEE14F;
     border: 0 inset #777777;
     border-radius: 2px;
-    color: #fcfcfc;
+    color: #585858;
     cursor: pointer;
     display: block;
     margin: 10px 0 0;

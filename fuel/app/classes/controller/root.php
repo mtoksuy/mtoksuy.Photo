@@ -26,6 +26,7 @@ class Controller_Root extends Controller_Basic_Template {
 
 		// リストres取得
 		$list_res        = Model_Root_Basis::list_res_get(0, 30, 'article');
+//pre_var_dump($list_res);
 		// リストHTML生成
 		$photo_list_html = Model_Root_Html::root_photo_list_html_get($list_res);
 
