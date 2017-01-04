@@ -9,6 +9,23 @@
 -->
 			<!-- flexsliderプラグイン -->
 			<script src="<?php echo HTTP; ?>assets/js/library/flexslider.2/jquery.flexslider.js"></script>
+			<!--  masonryプラグイン-->
+			<script src="<?php echo HTTP; ?>assets/js/library/masonry.pkgd.min.js"></script>
+			<script>
+
+/*******************
+HTML読み込み後に処理
+*******************/
+$(window).load(function(){
+	$('.grid').masonry({
+	  // options
+	  itemSelector: '.grid-item',
+	  columnWidth: 0,
+	  percentPosition: true,
+	});
+});
+</script>
+
 
 
 			<!-- FBページプラグイン -->
