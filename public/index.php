@@ -39,14 +39,14 @@ function pre_var_dump($data = '') {
 // ローカル環境
 if($_SERVER["HTTP_HOST"] == 'localhost') {
 	// デフォルト変数生成
-	define('HTTP', 'http://localhost/mtoksuy/');
-	define('PATH', '/Volumes/2016_ssd_media'.$_SERVER["DOCUMENT_ROOT"].'/mtoksuy/');
-	define('INTERNAL_PATH', str_replace('mtoksuy/', '', PATH).'fuelphp/mtoksuy/');
-	define('TITLE', 'mtoksuy.Photo-マツオカソウヤ写真ライブラリー');
-	define('META_KEYWORDS', 'マツオカソウヤ, 写真, ポートフォーリオ');
-	define('META_DESCRIPTION', 'マツオカソウヤによるスナップシューター写真ライブラリーポートフォーリトサイト');
-	define('TWITTER_ID', 'mtoksuy');
-	define('INSTAGRAM_ID', 'mtoksuy');
+	define('HTTP', 'http://localhost/suz/');
+	define('PATH', '/Volumes/2016_ssd_media'.$_SERVER["DOCUMENT_ROOT"].'/suz/');
+	define('INTERNAL_PATH', str_replace('suz/', '', PATH).'fuelphp/suz/');
+	define('TITLE', '松岡 鈴[写真ライブラリー]');
+	define('META_KEYWORDS', '松岡 鈴, 写真, ポートフォーリオ');
+	define('META_DESCRIPTION', '松岡 鈴によるスナップシューター写真ライブラリーポートフォーリトサイト');
+	define('TWITTER_ID', 'suz_matsuoka');
+	define('INSTAGRAM_ID', 'suz_matsuoka');
 }
 	// 本番環境
 	else {
@@ -54,11 +54,11 @@ if($_SERVER["HTTP_HOST"] == 'localhost') {
 		define('HTTP', 'http://'.$_SERVER["HTTP_HOST"].'/');
 		define('PATH', $_SERVER["DOCUMENT_ROOT"].'/');
 		define('INTERNAL_PATH', str_replace('public/', '', PATH));
-		define('TITLE', 'mtoksuy.Photo-マツオカソウヤ写真ライブラリー');
-		define('META_KEYWORDS', 'マツオカソウヤ, 写真, ポートフォーリオ');
-		define('META_DESCRIPTION', 'マツオカソウヤによるスナップシューター写真ライブラリーポートフォーリトサイト');
-		define('TWITTER_ID', 'mtoksuy');
-		define('INSTAGRAM_ID', 'mtoksuy');
+		define('TITLE', '松岡 鈴[写真ライブラリー]');
+		define('META_KEYWORDS', '松岡 鈴, 写真, ポートフォーリオ');
+		define('META_DESCRIPTION', '松岡 鈴によるスナップシューター写真ライブラリーポートフォーリトサイト');
+		define('TWITTER_ID', 'suz_matsuoka');
+		define('INSTAGRAM_ID', 'suz_matsuoka');
 	}
 
 //pre_var_dump($_SERVER);
