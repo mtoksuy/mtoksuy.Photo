@@ -248,10 +248,6 @@ left: -9999px;
 	height   : 100% ;
 }
 
-
-
-
-
 #fullscreen img {
     display: block;
     margin: 0 auto;
@@ -296,11 +292,16 @@ left: -9999px;
 	padding: 15px;
 
 }
-
-
-
-
-
+#fullscreen .fullscreen_ajax_loding {
+	display: block;
+	height: auto;
+	left: 48%;
+	margin: 0;
+	position: absolute;
+	top: 49%;
+	width: 4%;
+	z-index: 16;
+}
 
 
 
