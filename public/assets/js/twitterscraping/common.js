@@ -24,19 +24,6 @@ var count    = console.count;
 /*************
 グローバル変数
 *************/
-
-/***********
-http切り替え
-***********/
-if (location.host == 'localhost') {
-	var http = 'http://localhost/mtoksuy/';
-}
-	else if (location.host == 'mtoksuy.photo') {
-		var http = 'http://mtoksuy.photo/';
-	}
-		else if (location.host == 'www.mtoksuy.photo') {
-			var http = 'http://mtoksuy.photo/';
-		}
 	//----------------
 	//読み込み後の処理
 	//----------------
