@@ -1,0 +1,91 @@
+@charset "UTF-8";
+
+
+
+
+
+
+
+.main_contents {
+
+}
+.contact {
+    background-color: #fcfcfc;
+    border-bottom: 2px solid #e7e7e7;
+    border-radius: 2px;
+    box-shadow: 0 0 0 2px #e7e7e7;
+    margin-bottom: 60px;
+    padding: 15px;
+    position: relative;
+}
+.contact_contents {
+}
+.red {
+    color: red;
+}
+.contact_form {
+}
+.contact_form label {
+    color: #3a3a3a;
+    font-size: 16px;
+    margin: 0 0 5px;
+}
+.contact_form input {
+    border: 1px solid #e7e7e7;
+    border-radius: 2px;
+    color: #606060;
+    display: block;
+    font-size: 82%;
+    margin: 5px 0 15px;
+    padding: 10px;
+    width: 75%;
+}
+.contact_form input[type="text"] {
+}
+.contact_form textarea {
+    border: 1px solid #e7e7e7;
+    border-radius: 2px;
+    color: #606060;
+    display: block;
+    font-size: 82%;
+    height: 200px;
+    padding: 10px;
+    width: 75%;
+}
+.contact_form input[type="submit"] {
+    background-color: #FEE14F;
+    border: 0 inset #777777;
+    border-radius: 2px;
+    color: #585858;
+    cursor: pointer;
+    display: block;
+    margin: 10px 0 0;
+    padding: 13px;
+    width: 77%;
+}
+
+@media screen and (min-width: 0px) and (max-width: 1023px) {
+.main_contents {
+    max-width: 100%;
+}
+}
+
+
+
+
+
+
+/*************************
+メディアクエリ設定 0〜768
+*************************/
+@media screen and (min-width: 0px) and (max-width: 768px) {
+
+}
+
+
+
+
+
+
+
+
