@@ -83,13 +83,13 @@ var uaa = window.navigator.userAgent.toLowerCase();
 http切り替え
 ***********/
 if (location.host == 'localhost') {
-	var http = 'http://localhost/mtoksuy/';
+	var http = 'http://localhost/suz/';
 }
-	else if (location.host == 'mtoksuy.photo') {
-		var http = 'http://mtoksuy.photo/';
+	else if (location.host == 'suz.photos') {
+		var http = 'http://suz.photos/';
 	}
-		else if (location.host == 'www.mtoksuy.photo') {
-			var http = 'http://mtoksuy.photo/';
+		else if (location.host == 'www.suz.photos') {
+			var http = 'http://suz.photos/';
 		}
 //----------------------------------------------------------------------
 //文字列の先頭および末尾の連続する「半角空白・タブ文字・全角空白」を削除
