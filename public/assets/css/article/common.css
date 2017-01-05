@@ -171,16 +171,19 @@ photo
 /*******************
 フルスクリーンボタン
 *******************/
-.full_screen {
+.full_screen,
+.full_screen_mobile {
     position: absolute;
     right: 0;
     top: 0;
     z-index: 12;
 }
-.full_screen a {
+.full_screen a,
+.full_screen_mobile a {
 
 }
-.full_screen a img {
+.full_screen a img,
+.full_screen_mobile a img {
 	display: block;
 	padding: 15px;
 }
