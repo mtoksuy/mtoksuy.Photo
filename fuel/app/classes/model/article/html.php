@@ -712,7 +712,6 @@ class Model_Article_Html extends Model {
 	//記事ogpHTML生成
 	//---------------
 	static function article_meta_html_create($article_data_array, $description_length = 168, $article_type = 'article') {
-//		var_dump($article_data_array);
 		if(! is_int($description_length)) {
 			$description_length = 168;
 		}
@@ -1568,22 +1567,43 @@ var_dump($end_point);
 					</a>
 				</div>';
 		}
+		// 
+		// モバイル判別するPHPクラスライブラリを利用した機種判別
+		$detect  = Model_info_Basis::mobile_detect_create();
+		if($detect->isMobile()) {
+			$fullscreen_html = '
+				<div class="full_screen_mobile">
+					<a href="'.HTTP.'assets/img/'.$draft.'article/'.$year_time.'/original/'.$article_data_array["article_thumbnail_image"].'" class="o_8" target="_blank">
+						<img class="" width="15px" height="15px" src="'.HTTP.'assets/img/common/full_screen_1.png">	
+					</a>
+				</div>';
+		}
+			else if($detect->isTablet()) {
+				$fullscreen_html = '
+					<div class="full_screen_mobile">
+						<a href="'.HTTP.'assets/img/'.$draft.'article/'.$year_time.'/original/'.$article_data_array["article_thumbnail_image"].'" class="o_8" target="_blank">
+							<img class="" width="15px" height="15px" src="'.HTTP.'assets/img/common/full_screen_1.png">	
+						</a>
+					</div>';
+			}
+				else {
+					$fullscreen_html = '
+						<div class="full_screen">
+							<a href="" class="o_8">
+								<img class="" width="15px" height="15px" src="'.HTTP.'assets/img/common/full_screen_1.png">	
+							</a>
+						</div>';
+				}
 
 		// photo_html
 		$photo_html = ('
 			<div class="article_photo">
 				<img class="article_photo_image" width="auto" height="300" title="'.$article_data_array["article_title"].'" alt="'.$article_data_array["article_title"].'" src="'.HTTP.'assets/img/'.$draft.'article/'.$year_time.'/one_third/'.$article_data_array["article_thumbnail_image"].'" full-image-href-data="'.HTTP.'assets/img/'.$draft.'article/'.$year_time.'/original/'.$article_data_array["article_thumbnail_image"].'">
-
 				<div class="before_next_link">
 					'.$next_arrow_left_html.'
 					'.$prrview_arrow_right_html.'
-					<div class="full_screen">
-						<a href="" class="o_8">
-							<img class="" width="15px" height="15px" src="'.HTTP.'assets/img/common/full_screen_1.png">	
-						</a>
-					</div>
+					'.$fullscreen_html.'
 				</div>
-
 				<div id="fullscreen">
 					<img class="fullscreen_image" width="auto" height="100%" title="'.$article_data_array["article_title"].'" alt="'.$article_data_array["article_title"].'" src="'.HTTP.'assets/img/'.$draft.'article/'.$year_time.'/one_third/'.$article_data_array["article_thumbnail_image"].'" full-image-href-data="'.HTTP.'assets/img/'.$draft.'article/'.$year_time.'/original/'.$article_data_array["article_thumbnail_image"].'">
 					<div class="full_screen_close o_8">
@@ -1592,7 +1612,6 @@ var_dump($end_point);
 					'.$fullscreen_next_arrow_left_html.'
 					'.$fullscreen_prrview_arrow_right_html.'
 				</div>
-
 			</div>');
 		return $photo_html;
 	}
