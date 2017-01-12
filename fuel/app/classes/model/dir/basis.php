@@ -16,13 +16,15 @@ class Model_Dir_Basis extends Model {
 		// 親
 		$year_dir                   = (PATH.'assets/img/'.$create_dir.'/'.$article_year_time."/");
 		// 子
-		$one_third_dir              = (PATH.'assets/img/'.$create_dir.'/'.$article_year_time."/one_third/");
 		$detail_dir                 = (PATH.'assets/img/'.$create_dir.'/'.$article_year_time."/detail/");
 		$facebook_ogp_dir           = (PATH.'assets/img/'.$create_dir.'/'.$article_year_time."/facebook_ogp/");
 		$facebook_ogp_half_dir      = (PATH.'assets/img/'.$create_dir.'/'.$article_year_time."/facebook_ogp_half/");
 		$facebook_ogp_half_half_dir = (PATH.'assets/img/'.$create_dir.'/'.$article_year_time."/facebook_ogp_half_half/");
 		$facebook_ogp_reseve_dir    = (PATH.'assets/img/'.$create_dir.'/'.$article_year_time."/facebook_ogp_reseve/");
+		$one_third_dir              = (PATH.'assets/img/'.$create_dir.'/'.$article_year_time."/one_third/");
 		$original_dir               = (PATH.'assets/img/'.$create_dir.'/'.$article_year_time."/original/");
+		$ratio_3_2_side_dir         = (PATH.'assets/img/'.$create_dir.'/'.$article_year_time."/ratio_3_2_side/");
+		$ratio_3_2_side_640px_dir   = (PATH.'assets/img/'.$create_dir.'/'.$article_year_time."/ratio_3_2_side_640px/");
 		$square_dir                 = (PATH.'assets/img/'.$create_dir.'/'.$article_year_time."/square/");
 		$square_200px_dir           = (PATH.'assets/img/'.$create_dir.'/'.$article_year_time."/square_200px/");
 		$square_120px_dir           = (PATH.'assets/img/'.$create_dir.'/'.$article_year_time."/square_120px/");
@@ -34,12 +36,14 @@ class Model_Dir_Basis extends Model {
 			umask(0);
 			// ディレクトリ作成
 			$rc   = mkdir($year_dir, 0777);
-			$rc   = mkdir($one_third_dir, 0777);
 			$rc   = mkdir($detail_dir, 0777);
 			$rc   = mkdir($facebook_ogp_dir, 0777);
 			$rc   = mkdir($facebook_ogp_half_dir, 0777);
 			$rc   = mkdir($facebook_ogp_half_half_dir, 0777);
 			$rc   = mkdir($facebook_ogp_reseve_dir, 0777);
+			$rc   = mkdir($one_third_dir, 0777);
+			$rc   = mkdir($ratio_3_2_side_dir, 0777);
+			$rc   = mkdir($ratio_3_2_side_640px_dir, 0777);
 			$rc   = mkdir($original_dir, 0777);
 			$rc   = mkdir($square_dir, 0777);
 			$rc   = mkdir($square_200px_dir, 0777);
