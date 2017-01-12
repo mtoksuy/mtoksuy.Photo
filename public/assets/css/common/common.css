@@ -1382,6 +1382,7 @@ gridプラグイン
 .grid-item {
 width: 33.36333333333%;
 width: 33.333333333333333%;
+width: 25%;
  box-sizing: border-box;
  }
 .grid-item--width2 { width: 400px; }
@@ -3684,6 +3685,23 @@ background: rgba(0, 0, 0, 0) url("http://sharetube.jp/assets/img/common/amazon_i
     margin: 0 auto;
 		box-sizing: border-box;
   }
+
+
+
+
+
+	/*************
+	gridプラグイン
+	*************/
+	.grid {
+		box-sizing: border-box;
+	}
+	.grid-item {
+		width: 33.33333%;
+		box-sizing: border-box;
+	 }
+
+
 
   .card_photo_contents_time {
     bottom: 5px;
