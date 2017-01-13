@@ -177,6 +177,9 @@ class Model_Article_Html extends Model {
 			$local_time           = date('Y-m-d', $unix_time);
 			$local_japanese_time  = date('Y年m月d日', $unix_time);
 			$article_year_time    = date('Y', $unix_time);
+			// 緊急策 松岡
+			$random_key_year = (int)substr($value['random_key'], 0, 4);
+
 			// 記事タイトル取得 // エンティティを戻す
 			$article_title        = htmlspecialchars_decode($value["title"], ENT_NOQUOTES); // ダブルクォート、シングルクォートの両方をそのままにします。
 			// 記事動画取得
@@ -194,20 +197,20 @@ class Model_Article_Html extends Model {
 			// コンテンツHTML生成
 			$contents_html = Model_Article_Html::contents_html_create($value, $category_info_array);
 			// サムネイルHTML生成
-			$thumbnail_html = Model_Article_Html::thumbnail_html_create($value, $year_time, $preview_frg);
+			$thumbnail_html = Model_Article_Html::thumbnail_html_create($value, $random_key_year, $preview_frg);
 
 			// アーティクルボトムライクボックスHTML生成
 			$article_bottom_like_box_html = Model_Article_Html::article_bottom_like_box_html_create($value, $year_time, $preview_frg);
 
 			// 前のまとめ、次のまとめTML生成
-			$detail_press_bottom_html = Model_Article_Html::article_previous_next_html_create($article_primary_id, $article_type);
+//			$detail_press_bottom_html = Model_Article_Html::article_previous_next_html_create($article_primary_id, $article_type);
 
 			// まとめ記事の場合(重要)
 			if($value["matome_frg"] == 1) {
 				// まとめコンテンツリストHTML取得
 				$value["sub_text"] = Model_Login_Matome_Preview_Basis::matome_content_block_list_html_get($value["sub_text"]);
 			}
-			$image_path = INTERNAL_PATH.'public/assets/img/article/'.$year_time.'/original/'.$article_thumbnail_image;
+			$image_path = INTERNAL_PATH.'public/assets/img/article/'.$random_key_year.'/original/'.$article_thumbnail_image;
 			// 写真データHTML取得
 			$photo_exif_html = Model_Article_Html::photo_exif_html_get($image_path);
 

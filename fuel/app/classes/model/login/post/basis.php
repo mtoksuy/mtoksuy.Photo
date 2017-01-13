@@ -126,9 +126,15 @@ class Model_Login_Post_Basis extends Model {
 	//サムネイル作成
 	//--------------
 	public static function thumbnail_create($create_dir, $image_path) {
+//var_dump($create_dir);
+//var_dump($image_path);
+		// 緊急策 松岡
+		$random_key_year = (int)substr($image_path, 0, 4);
 		// コピー元画像の指定
 //		$targetImage = ($create_dir.'original/'.$image_path);
-		$targetImage = PATH.'assets/img/draft/article/'.date("Y").'/original/'.$image_path;
+		$targetImage = PATH.'assets/img/draft/article/'.$random_key_year.'/original/'.$image_path;
+//		var_dump($create_dir);
+//		var_dump($image_path);
 
 //		var_dump($targetImage);
 		// 拡張子取得
@@ -798,7 +804,7 @@ class Model_Login_Post_Basis extends Model {
 			/********************Suz専用********************/
 
 			// コピー元画像の指定
-			$targetImage = PATH.'assets/img/draft/article/'.date("Y").'/original/'.$image_path;
+			$targetImage = PATH.'assets/img/draft/article/'.$random_key_year.'/original/'.$image_path;
 			// コピー元画像のファイルサイズを取得
 			list($image_w, $image_h) = getimagesize($targetImage);
 			// 拡張子取得
@@ -909,7 +915,7 @@ class Model_Login_Post_Basis extends Model {
 			//ratio_3_2_side_640px
 			//--------------------
 			// コピー元画像の指定
-			$targetImage = PATH.'assets/img/draft/article/'.date("Y").'/ratio_3_2_side/'.$image_path;
+			$targetImage = $create_dir.'/ratio_3_2_side/'.$image_path;
 			// コピー元画像のファイルサイズを取得
 			list($image_w, $image_h) = getimagesize($targetImage);
 			// 拡張子取得
@@ -1132,13 +1138,13 @@ class Model_Login_Post_Basis extends Model {
 	//------------------
 	//サムネイルをコピー
 	//------------------
-	static function draft_thumbnail_copy($article_create_data_array) {
+	static function draft_thumbnail_copy($article_create_data_array, $random_key_year = null) {
 //		var_dump($article_create_data_array);
 // 全ての PHP エラーを表示する
 //error_reporting(-1);
 
 		// コピー元（マスターパス）
-		$draft_thumbnail_path = (PATH.'assets/img/draft/article/'.$article_create_data_array["article_year_time"]);
+		$draft_thumbnail_path = (PATH.'assets/img/draft/article/'.$random_key_year);
 		// コピー先（マスターパス）
 		$article_thumbnail_path = (PATH.'assets/img/article/'.$article_create_data_array["article_year_time"]);
 		// ファイルが存在するかチェックし、あればサムネイルコピー
