@@ -143,28 +143,32 @@ photo
     position: absolute;
     top: 0;
     width: 100%;
-		z-index: 12;
+		z-index: 150;
 }
 .before_next_link .arrow_left {
+/*
 		visibility: hidden;
+*/
     left: 2%;
     position: absolute;
     top: 43%;
-		z-index: 12;
+		z-index: 120;
 }
 .before_next_link .arrow_right {
+/*
 	visibility: hidden;
+*/
     right: 2%;
     position: absolute;
     top: 43%;
-		z-index: 12;
+		z-index: 120;
 }
 .before_next_link .arrow_left a,
 .before_next_link .arrow_right a {
 
 }
-.before_next_link .arrow_left img,
-.before_next_link .arrow_right img {
+.before_next_link .arrow_left a img,
+.before_next_link .arrow_right a img {
 	display: block;
 	padding: 15px;
 }

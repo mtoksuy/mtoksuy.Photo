@@ -64,11 +64,13 @@ function photo_change() {
 	});
 
 	/* アローdiv */
+/*
 	$('.photo .article_photo .before_next_link').css( {
 		'z-index' : '34',
 	});
-
+*/
 	/* アローボタン */
+/*
 	$('.arrow_left').css( {
 		'visibility' : 'visible',	
 		'z-index' : '33',
@@ -77,6 +79,7 @@ function photo_change() {
 		'visibility' : 'visible',	
 		'z-index' : '33',
 	});
+*/
 /*
 1280
 609
@@ -195,11 +198,14 @@ $(window).load(function(){
 	}, '.article_photo .article_photo_image');
 
 	/* アローdiv */
+/*
+
 	$('.photo .article_photo .before_next_link').css( {
 		'z-index' : '34',
 	});
-
+*/
 	/* アローボタン */
+/*
 	$('.arrow_left').css( {
 		'visibility' : 'visible',	
 		'z-index' : '33',
@@ -208,7 +214,7 @@ $(window).load(function(){
 		'visibility' : 'visible',	
 		'z-index' : '33',
 	});
-
+*/
 
 
 
