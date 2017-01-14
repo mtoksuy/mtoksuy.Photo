@@ -1552,6 +1552,8 @@ var_dump($end_point);
 				</div>';
 		}
 
+
+//pre_var_dump($previous_next_array);
 		// フルスクリーン用のネクストボタン
 		if($previous_next_array['next']) {
 			$fullscreen_next_arrow_left_html = '
@@ -1633,7 +1635,7 @@ var_dump($end_point);
 			$preview_url        = (''.HTTP.$article_type.'/'.$value["link"].'/');
 			$preview_url_number = $value["link"];
 
-			$unix_time            = strtotime($value["update_time"]);
+			$unix_time            = strtotime($value["create_time"]);
 			$local_time           = date('Y-m-d', $unix_time);
 			$local_japanese_time  = date('Y年m月d日', $unix_time);
 			$article_year_time    = date('Y', $unix_time);
@@ -1644,7 +1646,7 @@ var_dump($end_point);
 			$next_url        = (''.HTTP.$article_type.'/'.$value["link"].'/');
 			$next_url_number = $value["link"];
 
-			$unix_time            = strtotime($value["update_time"]);
+			$unix_time            = strtotime($value["create_time"]);
 			$local_time           = date('Y-m-d', $unix_time);
 			$local_japanese_time  = date('Y年m月d日', $unix_time);
 			$article_year_time    = date('Y', $unix_time);
