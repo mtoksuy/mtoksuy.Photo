@@ -9,21 +9,38 @@
 -->
 			<!-- flexsliderプラグイン -->
 			<script src="<?php echo HTTP; ?>assets/js/library/flexslider.2/jquery.flexslider.js"></script>
+
 			<!--  masonryプラグイン-->
 			<script src="<?php echo HTTP; ?>assets/js/library/masonry.pkgd.min.js"></script>
+			<script src="<?php echo HTTP; ?>assets/js/library/jquery.masonry.min.js"></script>
+
 			<script>
+	(function($){
+		$(function(){
+		  $('#grid').masonry({
+		    itemSelector: '.grid-item',
+				columnWidth: 0,
+				percentPosition: true,
+		  });
+  	});
+	})(jQuery);
 
 /*******************
 HTML読み込み後に処理
 *******************/
 $(window).load(function(){
-	$('.grid').masonry({
-	  // options
-	  itemSelector: '.grid-item',
-	  columnWidth: 0,
-	  percentPosition: true,
-	});
+	$('#grid').masonry('reload');
 });
+/*******************************
+ブラウザの大きさが変わったら発火
+*******************************/
+$(window).resize(function(){
+console.log('a');
+	$('#grid').masonry('reload');
+});
+
+
+
 </script>
 
 
@@ -69,5 +86,15 @@ $(window).load(function(){
 			}
 				else {?>
 					<!-- アナリティクス -->
+					<script>
+					  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+					  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+					  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+					  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+					
+					  ga('create', 'UA-90250380-1', 'auto');
+					  ga('send', 'pageview');
+					
+					</script>
 				<?php 
 				} ?>

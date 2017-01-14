@@ -126,9 +126,15 @@ class Model_Login_Post_Basis extends Model {
 	//サムネイル作成
 	//--------------
 	public static function thumbnail_create($create_dir, $image_path) {
+//var_dump($create_dir);
+//var_dump($image_path);
+		// 緊急策 松岡
+		$random_key_year = (int)substr($image_path, 0, 4);
 		// コピー元画像の指定
 //		$targetImage = ($create_dir.'original/'.$image_path);
-		$targetImage = PATH.'assets/img/draft/article/'.date("Y").'/original/'.$image_path;
+		$targetImage = PATH.'assets/img/draft/article/'.$random_key_year.'/original/'.$image_path;
+//		var_dump($create_dir);
+//		var_dump($image_path);
 
 //		var_dump($targetImage);
 		// 拡張子取得
@@ -795,31 +801,364 @@ class Model_Login_Post_Basis extends Model {
 			// パーミッション変更
 			chmod($create_dir.'square_120px/'.$image_path, 0777);
 
+			/********************Suz専用********************/
+
+			// コピー元画像の指定
+			$targetImage = PATH.'assets/img/draft/article/'.$random_key_year.'/original/'.$image_path;
+			// コピー元画像のファイルサイズを取得
+			list($image_w, $image_h) = getimagesize($targetImage);
+			// 拡張子取得
+			$type_str = substr($image_path, strrpos($image_path, '.') + 1);
+			// 置換（jpg→jpeg）
+			$type_str = str_replace("jpg","jpeg", $type_str);
+			// ファイル名から、画像インスタンスを生成
+			switch ($type_str) {
+				case 'jpeg':
+					$image = imagecreatefromjpeg($targetImage);
+				break;
+				case 'gif':
+					$image = imagecreatefromgif($targetImage);
+				break;
+				case 'png':
+					$image = imagecreatefrompng($targetImage);
+				break;
+				default:
+					
+				break;
+			}
+			// 比率取得
+			// 横幅の方が大きい場合
+			if($image_w > $image_h) {
+					$image_x70_ratio = 0.666666666667;
+					$image_x70_w     = $image_w;
+					$image_x70_h     = (int)($image_x70_w * $image_x70_ratio);
+					$shift_size_x    = 0;
+					$shift_size_y    = ($image_h - $image_x70_h) / 2;
+					$copy_width      = $image_w;
+					$copy_height     = (int)($image_w * $image_x70_ratio);
+					// ずらしサイズがマイナスだったら
+					if($shift_size_y <= 0) {
+						$image_x70_ratio = 1.5;
+						$image_x70_h     = $image_h;
+						$image_x70_w     = (int)($image_x70_h * $image_x70_ratio);
+						$shift_size_x    = ($image_w - $image_x70_w) / 2;
+						$shift_size_y    = 0;
+						$copy_width      = (int)($image_h * $image_x70_ratio);
+						$copy_height     = $image_h;
+					}
+			}
+				// 縦幅の方が大きい場合
+				else if($image_w < $image_h) {
+						$image_x70_ratio = 1.5;
+						$image_x70_h     = $image_h;
+						$image_x70_w     = (int)($image_x70_h * $image_x70_ratio);
+						$shift_size_x    = ($image_w - $image_x70_w) / 2;
+						$shift_size_y    = 0;
+						$copy_width      = (int)($image_h * $image_x70_ratio);
+						// ずらしサイズがマイナスだったら
+						if($shift_size_x <= 0) {
+							$image_x70_ratio = 0.666666666667;
+							$image_x70_w     = $image_w;
+							$image_x70_h     = (int)($image_x70_w * $image_x70_ratio);
+							$shift_size_x    = 0;
+							$shift_size_y    = ($image_h - $image_x70_h) / 2;
+							$copy_width      = $image_w;
+							$copy_height     = (int)($image_w * $image_x70_ratio);
+						}
+				}
+					// 同じ大きさの場合
+					else {
+						$image_x70_ratio = 0.666666666667;
+						$image_x70_w     = $image_w;
+						$image_x70_h     = (int)($image_x70_w * $image_x70_ratio);
+						$shift_size_x    = 0;
+						$shift_size_y    = ($image_h - $image_x70_h) / 2;
+						$copy_width      = $image_w;
+						$copy_height     = (int)($image_w * $image_x70_ratio);
+					}
+			//--------------
+			//ratio_3_2_side
+			//--------------
+			// サイズを指定して、背景用画像を生成
+			$width  = $image_x70_w;
+			$height = $image_x70_h;
+			$canvas = imagecreatetruecolor($width, $height);
+			imagecopyresampled($canvas,       // 背景画像
+			                   $image,        // コピー元画像
+			                   0,             // 背景画像の x 座標
+			                   0,             // 背景画像の y 座標
+			                   $shift_size_x, // コピー元の x 座標
+			                   $shift_size_y, // コピー元の y 座標
+			                   $width,        // 背景画像の幅
+			                   $height,       // 背景画像の高さ
+			                   $copy_width,   // コピー元画像ファイルの幅
+			                   $copy_height   // コピー元画像ファイルの高さ
+			                  );
+				// 画像ファイル作成
+				switch ($type_str) {
+					case 'jpeg':
+						imagejpeg($canvas, $create_dir.'ratio_3_2_side/'.$image_path, 96);
+					break;
+					case 'gif':
+						imagegif($canvas, $create_dir.'ratio_3_2_side/'.$image_path);
+					break;
+					case 'png':
+						imagepng($canvas, $create_dir.'ratio_3_2_side/'.$image_path, 6);
+					break;
+					default:
+					break;
+				}
+				// パーミッション変更
+				chmod($create_dir.'ratio_3_2_side/'.$image_path, 0777);
+
+			//--------------------
+			//ratio_3_2_side_640px
+			//--------------------
+			// コピー元画像の指定
+			$targetImage = $create_dir.'/ratio_3_2_side/'.$image_path;
+			// コピー元画像のファイルサイズを取得
+			list($image_w, $image_h) = getimagesize($targetImage);
+			// 拡張子取得
+			$type_str = substr($image_path, strrpos($image_path, '.') + 1);
+			// 置換（jpg→jpeg）
+			$type_str = str_replace("jpg","jpeg", $type_str);
+			// ファイル名から、画像インスタンスを生成
+			switch ($type_str) {
+				case 'jpeg':
+					$image = imagecreatefromjpeg($targetImage);
+				break;
+				case 'gif':
+					$image = imagecreatefromgif($targetImage);
+				break;
+				case 'png':
+					$image = imagecreatefrompng($targetImage);
+				break;
+				default:
+					
+				break;
+			}
+			//--------------------
+			//3_2_ratio_side_640px
+			//--------------------
+			// サイズを指定して、背景用画像を生成
+			$copy_width  = $image_w;
+			$copy_height = $image_h;
+			$create_width  = 640;
+			$create_height = 426;
+			$raito         =  $copy_height / $copy_width;
+			$create_height = $raito*$create_width;
+			$canvas = imagecreatetruecolor($create_width, $create_height);
+			imagecopyresampled($canvas,        // 背景画像
+			                   $image,         // コピー元画像
+			                   0,              // 背景画像の x 座標
+			                   0,              // 背景画像の y 座標
+			                   0,              // コピー元の x 座標
+			                   0,              // コピー元の y 座標
+			                   $create_width,  // 背景画像の幅
+			                   $create_height, // 背景画像の高さ
+			                   $copy_width,    // コピー元画像ファイルの幅
+			                   $copy_height    // コピー元画像ファイルの高さ
+			);
+				// 画像ファイル作成
+				switch ($type_str) {
+					case 'jpeg':
+						imagejpeg($canvas, $create_dir.'ratio_3_2_side_640px/'.$image_path, 96);
+					break;
+					case 'gif':
+						imagegif($canvas, $create_dir.'ratio_3_2_side_640px/'.$image_path);
+					break;
+					case 'png':
+						imagepng($canvas, $create_dir.'ratio_3_2_side_640px/'.$image_path, 6);
+					break;
+					default:
+					break;
+				}
+				// パーミッション変更
+				chmod($create_dir.'ratio_3_2_side_640px/'.$image_path, 0777);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+
+
+
+
+
+
+
+
 				// メモリ開放
 				imagedestroy($canvas);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 		return $image_path;
 	} // public static function thumbnail_create($thumbnail_imeg) {
 	//------------------
 	//サムネイルをコピー
 	//------------------
-	static function draft_thumbnail_copy($article_create_data_array) {
+	static function draft_thumbnail_copy($article_create_data_array, $random_key_year = null) {
 //		var_dump($article_create_data_array);
 // 全ての PHP エラーを表示する
 //error_reporting(-1);
 
 		// コピー元（マスターパス）
-		$draft_thumbnail_path = (PATH.'assets/img/draft/article/'.$article_create_data_array["article_year_time"]);
+		$draft_thumbnail_path = (PATH.'assets/img/draft/article/'.$random_key_year);
 		// コピー先（マスターパス）
 		$article_thumbnail_path = (PATH.'assets/img/article/'.$article_create_data_array["article_year_time"]);
 		// ファイルが存在するかチェックし、あればサムネイルコピー
 //		if(!file_exists($draft_thumbnail_file_path)) {
 			// 
+
 			$draft_thumbnail_detail_path                 = $draft_thumbnail_path.'/detail/'.$article_create_data_array["thumbnail_image"];
 			$draft_thumbnail_facebook_ogp_path           = $draft_thumbnail_path.'/facebook_ogp/'.$article_create_data_array["thumbnail_image"];
 			$draft_thumbnail_facebook_ogp_half_path      = $draft_thumbnail_path.'/facebook_ogp_half/'.$article_create_data_array["thumbnail_image"];
 			$draft_thumbnail_facebook_ogp_half_half_path = $draft_thumbnail_path.'/facebook_ogp_half_half/'.$article_create_data_array["thumbnail_image"];
 			$draft_thumbnail_facebook_ogp_reseve_path    = $draft_thumbnail_path.'/facebook_ogp_reseve/'.$article_create_data_array["thumbnail_image"];
 			$draft_thumbnail_one_third_path              = $draft_thumbnail_path.'/one_third/'.$article_create_data_array["thumbnail_image"];
+			$draft_thumbnail_ratio_3_2_side_path         = $draft_thumbnail_path.'/ratio_3_2_side/'.$article_create_data_array["thumbnail_image"];
+			$draft_thumbnail_ratio_3_2_side_640px_path   = $draft_thumbnail_path.'/ratio_3_2_side_640px/'.$article_create_data_array["thumbnail_image"];
 			$draft_thumbnail_original_path               = $draft_thumbnail_path.'/original/'.$article_create_data_array["thumbnail_image"];
 			$draft_thumbnail_square_path                 = $draft_thumbnail_path.'/square/'.$article_create_data_array["thumbnail_image"];
 			$draft_thumbnail_square_200px_path           = $draft_thumbnail_path.'/square_200px/'.$article_create_data_array["thumbnail_image"];
@@ -837,7 +1176,9 @@ class Model_Login_Post_Basis extends Model {
 			$article_thumbnail_facebook_ogp_half_path      = $article_thumbnail_path.'/facebook_ogp_half/'.$thumbnail_name;
 			$article_thumbnail_facebook_ogp_half_half_path = $article_thumbnail_path.'/facebook_ogp_half_half/'.$thumbnail_name;
 			$article_thumbnail_facebook_ogp_reseve_path    = $article_thumbnail_path.'/facebook_ogp_reseve/'.$thumbnail_name;
-			$article_thumbnail_one_third_path               = $article_thumbnail_path.'/one_third/'.$thumbnail_name;
+			$article_thumbnail_one_third_path              = $article_thumbnail_path.'/one_third/'.$thumbnail_name;
+			$article_thumbnail_ratio_3_2_side_path         = $article_thumbnail_path.'/ratio_3_2_side/'.$thumbnail_name;
+			$article_thumbnail_ratio_3_2_side_640px_path   = $article_thumbnail_path.'/ratio_3_2_side_640px/'.$thumbnail_name;
 			$article_thumbnail_original_path               = $article_thumbnail_path.'/original/'.$thumbnail_name;
 			$article_thumbnail_square_path                 = $article_thumbnail_path.'/square/'.$thumbnail_name;
 			$article_thumbnail_square_200px_path           = $article_thumbnail_path.'/square_200px/'.$thumbnail_name;
@@ -851,6 +1192,8 @@ class Model_Login_Post_Basis extends Model {
 			copy($draft_thumbnail_facebook_ogp_half_half_path, $article_thumbnail_facebook_ogp_half_half_path);
 			copy($draft_thumbnail_facebook_ogp_reseve_path, $article_thumbnail_facebook_ogp_reseve_path);
 			copy($draft_thumbnail_one_third_path, $article_thumbnail_one_third_path);
+			copy($draft_thumbnail_ratio_3_2_side_path, $article_thumbnail_ratio_3_2_side_path);
+			copy($draft_thumbnail_ratio_3_2_side_640px_path, $article_thumbnail_ratio_3_2_side_640px_path);
 			copy($draft_thumbnail_original_path, $article_thumbnail_original_path);
 			copy($draft_thumbnail_square_path, $article_thumbnail_square_path);
 			copy($draft_thumbnail_square_200px_path, $article_thumbnail_square_200px_path);

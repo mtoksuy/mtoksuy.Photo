@@ -143,44 +143,51 @@ photo
     position: absolute;
     top: 0;
     width: 100%;
-		z-index: 12;
+		z-index: 150;
 }
 .before_next_link .arrow_left {
+/*
 		visibility: hidden;
+*/
     left: 2%;
     position: absolute;
     top: 43%;
-		z-index: 12;
+		z-index: 120;
 }
 .before_next_link .arrow_right {
+/*
 	visibility: hidden;
+*/
     right: 2%;
     position: absolute;
     top: 43%;
-		z-index: 12;
+		z-index: 120;
 }
 .before_next_link .arrow_left a,
 .before_next_link .arrow_right a {
 
 }
-.before_next_link .arrow_left img,
-.before_next_link .arrow_right img {
+.before_next_link .arrow_left a img,
+.before_next_link .arrow_right a img {
 	display: block;
 	padding: 15px;
 }
 /*******************
 フルスクリーンボタン
 *******************/
-.full_screen {
+.full_screen,
+.full_screen_mobile {
     position: absolute;
     right: 0;
     top: 0;
     z-index: 12;
 }
-.full_screen a {
+.full_screen a,
+.full_screen_mobile a {
 
 }
-.full_screen a img {
+.full_screen a img,
+.full_screen_mobile a img {
 	display: block;
 	padding: 15px;
 }
@@ -248,10 +255,6 @@ left: -9999px;
 	height   : 100% ;
 }
 
-
-
-
-
 #fullscreen img {
     display: block;
     margin: 0 auto;
@@ -296,11 +299,16 @@ left: -9999px;
 	padding: 15px;
 
 }
-
-
-
-
-
+#fullscreen .fullscreen_ajax_loding {
+	display: block;
+	height: auto;
+	left: 48%;
+	margin: 0;
+	position: absolute;
+	top: 49%;
+	width: 4%;
+	z-index: 16;
+}
 
 
 

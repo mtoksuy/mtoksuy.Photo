@@ -22,7 +22,7 @@ class Model_Root_Html extends Model {
 		}
 		foreach($list_res as $key => $value) {
 			// ターゲット画像
-			$targetImage = (PATH.'assets/img/article/'.date('Y',strtotime($value['create_time'])).'/detail/'.$value["thumbnail_image"]);
+			$targetImage = (PATH.'assets/img/article/'.date('Y',strtotime($value['create_time'])).'/ratio_3_2_side_640px/'.$value["thumbnail_image"]);
 
 			// コピー元画像のファイルサイズを取得
 			list($image_w, $image_h) = getimagesize($targetImage);
@@ -39,7 +39,7 @@ class Model_Root_Html extends Model {
 				<article>
 					<a href="'.HTTP.'article/'.$value['primary_id'].'/" class="clearfix">
 						<figure>
-							<img class="" src="'.HTTP.'assets/img/article/'.date('Y',strtotime($value['create_time'])).'/detail/'.$value['thumbnail_image'].'" title="'.$value['title'].'" alt="'.$value['title'].'" height="200" width="200">
+							<img class="" src="'.HTTP.'assets/img/article/'.date('Y',strtotime($value['create_time'])).'/ratio_3_2_side_640px/'.$value['thumbnail_image'].'" title="'.$value['title'].'" alt="'.$value['title'].'" height="200" width="300">
 
 						</figure>
 					</a>
@@ -64,6 +64,31 @@ $photo_list_html =
 			<span class="typcn typcn typcn-bookmark"></span>
 			<span>Photo Collection</span>
 		</div>
+
+		<div class="show_change_list">
+			<ol class="clearfix">
+				<li class="column_2_show">
+					<a href="">
+						<span class="active">ラインショウ</span>
+					</a>
+				</li>
+				<li class="column_1_show">
+					<a href="">
+						<span>ラインショウ</span>
+					</a>
+				</li>
+
+
+
+
+
+			</ol>
+		</div>
+
+
+
+
+
 		<ul class="grid effect-1 clearfix" id="grid">
 			'.$li_html.'
 		</ul>

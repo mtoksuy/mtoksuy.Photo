@@ -177,6 +177,9 @@ class Model_Article_Html extends Model {
 			$local_time           = date('Y-m-d', $unix_time);
 			$local_japanese_time  = date('Y年m月d日', $unix_time);
 			$article_year_time    = date('Y', $unix_time);
+			// 緊急策 松岡
+			$random_key_year = (int)substr($value['random_key'], 0, 4);
+
 			// 記事タイトル取得 // エンティティを戻す
 			$article_title        = htmlspecialchars_decode($value["title"], ENT_NOQUOTES); // ダブルクォート、シングルクォートの両方をそのままにします。
 			// 記事動画取得
@@ -194,20 +197,20 @@ class Model_Article_Html extends Model {
 			// コンテンツHTML生成
 			$contents_html = Model_Article_Html::contents_html_create($value, $category_info_array);
 			// サムネイルHTML生成
-			$thumbnail_html = Model_Article_Html::thumbnail_html_create($value, $year_time, $preview_frg);
+			$thumbnail_html = Model_Article_Html::thumbnail_html_create($value, $random_key_year, $preview_frg);
 
 			// アーティクルボトムライクボックスHTML生成
 			$article_bottom_like_box_html = Model_Article_Html::article_bottom_like_box_html_create($value, $year_time, $preview_frg);
 
 			// 前のまとめ、次のまとめTML生成
-			$detail_press_bottom_html = Model_Article_Html::article_previous_next_html_create($article_primary_id, $article_type);
+//			$detail_press_bottom_html = Model_Article_Html::article_previous_next_html_create($article_primary_id, $article_type);
 
 			// まとめ記事の場合(重要)
 			if($value["matome_frg"] == 1) {
 				// まとめコンテンツリストHTML取得
 				$value["sub_text"] = Model_Login_Matome_Preview_Basis::matome_content_block_list_html_get($value["sub_text"]);
 			}
-			$image_path = INTERNAL_PATH.'public/assets/img/article/'.$year_time.'/original/'.$article_thumbnail_image;
+			$image_path = INTERNAL_PATH.'public/assets/img/article/'.$random_key_year.'/original/'.$article_thumbnail_image;
 			// 写真データHTML取得
 			$photo_exif_html = Model_Article_Html::photo_exif_html_get($image_path);
 
@@ -712,7 +715,6 @@ class Model_Article_Html extends Model {
 	//記事ogpHTML生成
 	//---------------
 	static function article_meta_html_create($article_data_array, $description_length = 168, $article_type = 'article') {
-//		var_dump($article_data_array);
 		if(! is_int($description_length)) {
 			$description_length = 168;
 		}
@@ -1550,6 +1552,8 @@ var_dump($end_point);
 				</div>';
 		}
 
+
+//pre_var_dump($previous_next_array);
 		// フルスクリーン用のネクストボタン
 		if($previous_next_array['next']) {
 			$fullscreen_next_arrow_left_html = '
@@ -1568,22 +1572,43 @@ var_dump($end_point);
 					</a>
 				</div>';
 		}
+		// 
+		// モバイル判別するPHPクラスライブラリを利用した機種判別
+		$detect  = Model_info_Basis::mobile_detect_create();
+		if($detect->isMobile()) {
+			$fullscreen_html = '
+				<div class="full_screen_mobile">
+					<a href="'.HTTP.'assets/img/'.$draft.'article/'.$year_time.'/original/'.$article_data_array["article_thumbnail_image"].'" class="o_8" target="_blank">
+						<img class="" width="15px" height="15px" src="'.HTTP.'assets/img/common/full_screen_1.png">	
+					</a>
+				</div>';
+		}
+			else if($detect->isTablet()) {
+				$fullscreen_html = '
+					<div class="full_screen_mobile">
+						<a href="'.HTTP.'assets/img/'.$draft.'article/'.$year_time.'/original/'.$article_data_array["article_thumbnail_image"].'" class="o_8" target="_blank">
+							<img class="" width="15px" height="15px" src="'.HTTP.'assets/img/common/full_screen_1.png">	
+						</a>
+					</div>';
+			}
+				else {
+					$fullscreen_html = '
+						<div class="full_screen">
+							<a href="" class="o_8">
+								<img class="" width="15px" height="15px" src="'.HTTP.'assets/img/common/full_screen_1.png">	
+							</a>
+						</div>';
+				}
 
 		// photo_html
 		$photo_html = ('
 			<div class="article_photo">
 				<img class="article_photo_image" width="auto" height="300" title="'.$article_data_array["article_title"].'" alt="'.$article_data_array["article_title"].'" src="'.HTTP.'assets/img/'.$draft.'article/'.$year_time.'/one_third/'.$article_data_array["article_thumbnail_image"].'" full-image-href-data="'.HTTP.'assets/img/'.$draft.'article/'.$year_time.'/original/'.$article_data_array["article_thumbnail_image"].'">
-
 				<div class="before_next_link">
 					'.$next_arrow_left_html.'
 					'.$prrview_arrow_right_html.'
-					<div class="full_screen">
-						<a href="" class="o_8">
-							<img class="" width="15px" height="15px" src="'.HTTP.'assets/img/common/full_screen_1.png">	
-						</a>
-					</div>
+					'.$fullscreen_html.'
 				</div>
-
 				<div id="fullscreen">
 					<img class="fullscreen_image" width="auto" height="100%" title="'.$article_data_array["article_title"].'" alt="'.$article_data_array["article_title"].'" src="'.HTTP.'assets/img/'.$draft.'article/'.$year_time.'/one_third/'.$article_data_array["article_thumbnail_image"].'" full-image-href-data="'.HTTP.'assets/img/'.$draft.'article/'.$year_time.'/original/'.$article_data_array["article_thumbnail_image"].'">
 					<div class="full_screen_close o_8">
@@ -1592,7 +1617,6 @@ var_dump($end_point);
 					'.$fullscreen_next_arrow_left_html.'
 					'.$fullscreen_prrview_arrow_right_html.'
 				</div>
-
 			</div>');
 		return $photo_html;
 	}
@@ -1611,7 +1635,7 @@ var_dump($end_point);
 			$preview_url        = (''.HTTP.$article_type.'/'.$value["link"].'/');
 			$preview_url_number = $value["link"];
 
-			$unix_time            = strtotime($value["update_time"]);
+			$unix_time            = strtotime($value["create_time"]);
 			$local_time           = date('Y-m-d', $unix_time);
 			$local_japanese_time  = date('Y年m月d日', $unix_time);
 			$article_year_time    = date('Y', $unix_time);
@@ -1622,7 +1646,7 @@ var_dump($end_point);
 			$next_url        = (''.HTTP.$article_type.'/'.$value["link"].'/');
 			$next_url_number = $value["link"];
 
-			$unix_time            = strtotime($value["update_time"]);
+			$unix_time            = strtotime($value["create_time"]);
 			$local_time           = date('Y-m-d', $unix_time);
 			$local_japanese_time  = date('Y年m月d日', $unix_time);
 			$article_year_time    = date('Y', $unix_time);

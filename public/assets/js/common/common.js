@@ -1,14 +1,14 @@
 /*************************
 デバッグ変数コンストラクタ
 *************************/
-
+/*
 var p        = console.log;
 var print    = console.log;
 var var_dump = console.dir;
 var trace    = console.trace;
 var time     = console.time;
 var count    = console.count;
-
+*/
 /*****************
 ブラウザ・機種判別
 *****************/
@@ -489,23 +489,64 @@ for(i = 0; i < iframe_twitter_tweet_object.length; i++) {
 
 
 /*******************
-HTML読み込み後に処理
+
 *******************/
-$(window).load(function(){
-	//----------------------------
-	//関連記事の段落を合わせて表示
-	//----------------------------
-	var array = [];
-	var html = $('.article_inside_related_article .article_inside_related_article_content ul').children();
-	$(html).each(function(i, elem) {
-		var delete_number = parseInt($(this).css('padding-top'), 10) + parseInt($(this).css('padding-bottom'), 10);
-		array.push(elem.clientHeight - delete_number - 9); // innerのpadding10pxを取り除いた 1少ないのは段落つけなくするため
-	});
-	// 配列の中の最大値を求める
-	var max = Math.max.apply(null, array);
-	$('.article_inside_related_article .article_inside_related_article_content ul li article a .inner').css( {
-		height: max + 'px'
-	});
+$(function() {
+	/*****************
+	コンテンツ表示変換
+	*****************/
+	$('.show_change_list').on( {
+		'click' : function() {
+			var class_name = $(this).find('span').attr('class');
+			// アクティブな場合
+			if(class_name == 'active') {
+
+			}
+				// アクティブではない場合
+				else {
+					$('.column_2_show').find('span').attr('class', 'active');
+					$('.column_1_show').find('span').attr('class', 'none');
+					if($(window).width() > 768) {
+						var width_number = 25;
+					}
+						else {
+							var width_number = 33.33333;
+						}
+					$('.grid-item').css( {
+						'width' : width_number+'%',
+					});
+					setTimeout(function() {
+						$('#grid').masonry('reload');
+					}, 150);
+				}
+			return false;
+		}
+	}, '.column_2_show');
+	/*****************
+	コンテンツ表示変換
+	*****************/
+	$('.show_change_list').on( {
+		'click' : function() {
+			var class_name = $(this).find('span').attr('class');
+			// アクティブな場合
+			if(class_name == 'active') {
+
+			}
+				// アクティブではない場合
+				else {
+					$('.column_1_show').find('span').attr('class', 'active');
+					$('.column_2_show').find('span').attr('class', 'none');
+					$('.grid-item').css( {
+						'width' : '100%',
+					});
+					setTimeout(function() {
+						$('#grid').masonry('reload');
+					}, 150);
+				}
+			return false;
+		}
+	}, '.column_1_show');
+
 });
 /*******************
 HTML読み込み後に処理

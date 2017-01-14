@@ -83,6 +83,9 @@ class Controller_Login_Admin_Draft_List_Edit extends Controller_Login_Template {
 					$image_path = Model_Login_Post_Draft_Basis::thumbnail_name_get($post["random_key"]);
 					$article_create_data_array["thumbnail_image"] = $image_path;
 //					var_dump($article_create_data_array);
+					// 緊急策 松岡
+					$random_key_year = (int)substr($image_path, 0, 4);
+
 
 					// 作成場所
 					$create_dir = 'article/';
@@ -90,11 +93,15 @@ class Controller_Login_Admin_Draft_List_Edit extends Controller_Login_Template {
 					Model_Dir_Basis::thumbnail_dir_create($create_dir, $article_create_data_array["article_year_time"]);
 
 					// サムネイル作成場所
-					$create_dir = PATH.'assets/img/draft/article/'.date("Y").'/';
+//					$create_dir = PATH.'assets/img/draft/article/'.date("Y").'/';
+					// 作成場所
+					$create_dir = PATH.'assets/img/draft/article/'.$random_key_year.'/';
+
+
 					// サムネイル作成
 					Model_Login_Post_Basis::thumbnail_create($create_dir, $image_path);
 					// サムネイルコピー
-					Model_Login_Post_Basis::draft_thumbnail_copy($article_create_data_array);
+					Model_Login_Post_Basis::draft_thumbnail_copy($article_create_data_array, $random_key_year);
 //								var_dump($article_create_data_array);
 					// 拡張子取得
 					$extends = str_replace($article_create_data_array["random_key"], "", $article_create_data_array["thumbnail_image"]);
