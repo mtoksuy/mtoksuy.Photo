@@ -1373,6 +1373,100 @@ card_photo
 .article_list_text {
   margin: 15px 10px 10px;
 }
+/*********************
+コンテンツ表示方法変更
+*********************/
+.show_change_list {
+
+}
+
+.show_change_list ol {
+    border-top: 2px solid #eee;
+    list-style: outside none none;
+    margin: 15px 0 5px;
+    padding: 0;
+		box-sizing: border-box;
+}
+
+.show_change_list ol li {
+	float: left;
+	width: 50%;
+	box-sizing: border-box;
+
+}
+.show_change_list ol li a {
+    display: block;
+    padding: 10px;
+		box-sizing: border-box;
+}
+.show_change_list ol li a span {
+	background-image: url('http://suz.photos/assets/img/common/sprites_2.png');
+    display: block;
+    overflow: hidden;
+    text-indent: 110%;
+    white-space: nowrap;
+	margin: 0 auto;
+
+}
+
+.show_change_list ol .column_2_show {
+
+}
+.show_change_list ol .column_2_show a {
+
+}
+.show_change_list ol .column_2_show a span {
+/*
+   background-color: bisque;
+*/
+    background-position: 50.7% -2px;
+    background-size: 279px auto;
+    display: block;
+    height: 20px;
+    position: relative;
+    width: 20px;
+}
+.show_change_list ol .column_2_show a span.active {
+	background-position: -152px -2px;
+}
+
+
+.show_change_list ol .column_2_show a span:hover {
+
+}
+
+.show_change_list ol .column_1_show {
+
+}
+.show_change_list ol .column_1_show a {
+
+}
+.show_change_list ol .column_1_show a span {
+/*
+    background-color: bisque;
+*/
+    background-position: -175px -1px;
+    background-size: 279px auto;
+    display: block;
+    height: 20px;
+    position: relative;
+    width: 20px;
+}
+.show_change_list ol .column_1_show a span.active {
+    background-position: -199px -1px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
 /*************
 gridプラグイン
 *************/

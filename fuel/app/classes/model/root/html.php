@@ -64,6 +64,31 @@ $photo_list_html =
 			<span class="typcn typcn typcn-bookmark"></span>
 			<span>Photo Collection</span>
 		</div>
+
+		<div class="show_change_list">
+			<ol class="clearfix">
+				<li class="column_2_show">
+					<a href="">
+						<span class="active">ラインショウ</span>
+					</a>
+				</li>
+				<li class="column_1_show">
+					<a href="">
+						<span>ラインショウ</span>
+					</a>
+				</li>
+
+
+
+
+
+			</ol>
+		</div>
+
+
+
+
+
 		<ul class="grid effect-1 clearfix" id="grid">
 			'.$li_html.'
 		</ul>
